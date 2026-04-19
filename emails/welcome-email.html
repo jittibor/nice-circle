@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to N'ICE Circle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Maison Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid #1FA894;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1FA894;
+            letter-spacing: 2px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1FA894 0%, #FF1E8E 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Timmons NY', serif;
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 0;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-family: 'Timmons NY', serif;
+            font-size: 24px;
+            color: #1FA894;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .benefits {
+            background-color: #f9f9f9;
+            border-left: 4px solid #FF6B2C;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .benefits li {
+            list-style: none;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .benefits li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #FF6B2C;
+            font-weight: bold;
+        }
+
+        .prize-section {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFEBCC 100%);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            border: 2px solid #FFDD00;
+        }
+
+        .prize-section h3 {
+            font-family: 'Timmons NY', serif;
+            font-size: 20px;
+            color: #C4003C;
+            margin-bottom: 12px;
+        }
+
+        .prize-section p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .odds {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .timeline {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            background-color: #1FA894;
+            color: white;
+            width: 100px;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex-grow: 1;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            margin: 0;
+            color: #555;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            margin: 10px 5px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary {
+            background-color: #FF6B2C;
+            color: white;
+        }
+
+        .cta-primary:hover {
+            background-color: #E55A1D;
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            background-color: #FF1E8E;
+            color: white;
+        }
+
+        .cta-secondary:hover {
+            background-color: #E60B7B;
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 0 8px;
+            background-color: #1FA894;
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            line-height: 40px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #FF6B2C;
+        }
+
+        .footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding: 30px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 3px solid #FF6B2C;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #FF6B2C;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 100% !important;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+            .cta-button {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-marker {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">N'ICE</div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Welcome to N'ICE Circle, {{firstName}}</h1>
+            <p>You're now part of something far from ordinary</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Section 1: What You've Joined -->
+            <div class="section">
+                <h2>You've Entered an Exclusive Community</h2>
+                <p>You're now among discerning individuals who demand more. Here's what Circle membership means:</p>
+
+                <div class="benefits">
+                    <ul>
+                        <li>Early access to N'ICE products before official launch</li>
+                        <li>Exclusive flavors and limited editions</li>
+                        <li>Community of like-minded individuals</li>
+                        <li>Your chance at something extraordinary</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 2: The Prize -->
+            <div class="section">
+                <div class="prize-section">
+                    <h3>Meet Justin Gaethje</h3>
+                    <p><strong>Two Circle members will be randomly selected to meet the fighter at UFC Freedom 250.</strong></p>
+                    <p>You're in the draw simply by joining.</p>
+                    <p class="odds">Your odds: 1 in X members</p>
+                </div>
+            </div>
+
+            <!-- Section 3: What's Next -->
+            <div class="section">
+                <h2>Here's Your Journey</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Next</div>
+                        <div class="timeline-content">
+                            <p><strong>Personalized AI Video</strong><br>You'll receive an AI-personalized video from Justin Gaethje mentioning your name</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">June 14</div>
+                        <div class="timeline-content">
+                            <p><strong>Product Launches</strong><br>Get early access, exclusive pricing, and first pick of new flavors</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Ongoing</div>
+                        <div class="timeline-content">
+                            <p><strong>Weekly Updates</strong><br>New flavors, fighter stories, exclusive deals, and community news delivered to your inbox</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <p style="margin-bottom: 20px; font-weight: 600;">Ready to get started?</p>
+                <a href="https://n1ce.com/circle/dashboard" class="cta-button cta-primary">View Your Referral Link</a>
+                <a href="https://n1ce.com/flavors" class="cta-button cta-secondary">Explore Flavors</a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://instagram.com/nice" title="Instagram">📷</a>
+                <a href="https://tiktok.com/@nice" title="TikTok">🎵</a>
+                <a href="https://twitter.com/nice" title="Twitter">𝕏</a>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Closing -->
+            <p style="text-align: center; font-size: 14px; color: #666; margin-top: 30px;">
+                Welcome to the Circle. <strong style="color: #1FA894;">Far from Ordinary.</strong>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>N'ICE Circle</strong></p>
+            <p>High-quality smoke-free nicotine experience from Sweden</p>
+            <p>
+                <a href="https://n1ce.com">Visit Website</a> |
+                <a href="https://n1ce.com/support">Support</a> |
+                <a href="https://n1ce.com/privacy">Privacy Policy</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 11px;">
+                You're receiving this email because you signed up for N'ICE Circle.<br>
+                <a href="#">Unsubscribe</a> | <a href="#">Update Preferences</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 11px; color: #666;">
+                © 2026 N'ICE. All rights reserved. | support@nicepouches.com
+            </p>
+        </div>
+    </div>
+</body>
+</html>
