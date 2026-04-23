@@ -1,28 +1,13 @@
 # ══════════════════════════════════════════════════════════════════
 # Netlify deploy config for the N1CE Circle presentation site
 # ══════════════════════════════════════════════════════════════════
-# Serve all static files from public folder + copy emails folder
+# Serve the exact presentation from localhost:3000/presentation
 
 [build]
   publish = "public"
-  command = "mkdir -p public/emails && cp -r emails/* public/emails/"
+  command = "cp -r emails public/emails"
 
-# Nicer URLs: serve beautiful HTML files without extensions
-[[redirects]]
-  from = "/"
-  to = "/join.html"
-  status = 200
-
-[[redirects]]
-  from = "/join"
-  to = "/join.html"
-  status = 200
-
-[[redirects]]
-  from = "/demo"
-  to = "/join.html"
-  status = 200
-
+# Route /presentation to presentation.html
 [[redirects]]
   from = "/presentation"
   to = "/presentation.html"
@@ -33,21 +18,11 @@
   to = "/presentation.html"
   status = 200
 
+# Route root to presentation
 [[redirects]]
-  from = "/operator"
-  to = "/operator.html"
+  from = "/"
+  to = "/presentation.html"
   status = 200
-
-[[redirects]]
-  from = "/margin"
-  to = "/operator.html"
-  status = 200
-
-# Fallback for SPA-style routing
-[[redirects]]
-  from = "/*"
-  to = "/join.html"
-  status = 404
 
 [[redirects]]
   from = "/internal"
