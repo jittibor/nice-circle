@@ -1,17 +1,13 @@
 # ══════════════════════════════════════════════════════════════════
-# Netlify deploy config for the N1CE Circle email preview site
+# Netlify deploy config for the N1CE Circle presentation site
 # ══════════════════════════════════════════════════════════════════
-# Publish from the public folder where all HTML files and assets are stored.
-# All static assets (images, videos, emails) are reachable via their 
-# existing relative paths (/images, /videos, /emails/...).
+# Serve all static files from public folder + copy emails folder
 
 [build]
   publish = "public"
-  command = "node scripts/build-variants.js"
+  command = "mkdir -p public/emails && cp -r emails/* public/emails/"
 
-# Nicer URLs: map short preview routes → actual HTML files.
-# Visitors can land on /preview/variants and get the gallery,
-# /gallery is an alias, etc.
+# Nicer URLs: serve beautiful HTML files without extensions
 [[redirects]]
   from = "/"
   to = "/join.html"
@@ -46,6 +42,12 @@
   from = "/margin"
   to = "/operator.html"
   status = 200
+
+# Fallback for SPA-style routing
+[[redirects]]
+  from = "/*"
+  to = "/join.html"
+  status = 404
 
 [[redirects]]
   from = "/internal"
