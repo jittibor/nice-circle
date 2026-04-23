@@ -1,13 +1,12 @@
 # ══════════════════════════════════════════════════════════════════
 # Netlify deploy config for the N1CE Circle email preview site
 # ══════════════════════════════════════════════════════════════════
-# Publish from the repo root. All static assets (images, videos, emails)
-# are reachable via their existing relative paths (/images, /videos,
-# /emails/...). The build step regenerates the email variants + static
-# Gmail mocks so they're always fresh on each deploy.
+# Publish from the public folder where all HTML files and assets are stored.
+# All static assets (images, videos, emails) are reachable via their 
+# existing relative paths (/images, /videos, /emails/...).
 
 [build]
-  publish = "."
+  publish = "public"
   command = "node scripts/build-variants.js"
 
 # Nicer URLs: map short preview routes → actual HTML files.
