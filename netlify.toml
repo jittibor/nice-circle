@@ -1,0 +1,103 @@
+# ══════════════════════════════════════════════════════════════════
+# Netlify deploy config for the N1CE Circle email preview site
+# ══════════════════════════════════════════════════════════════════
+# Publish from the repo root. All static assets (images, videos, emails)
+# are reachable via their existing relative paths (/images, /videos,
+# /emails/...). The build step regenerates the email variants + static
+# Gmail mocks so they're always fresh on each deploy.
+
+[build]
+  publish = "."
+  command = "node scripts/build-variants.js"
+
+# Nicer URLs: map short preview routes → actual HTML files.
+# Visitors can land on /preview/variants and get the gallery,
+# /gallery is an alias, etc.
+[[redirects]]
+  from = "/"
+  to = "/join.html"
+  status = 200
+
+[[redirects]]
+  from = "/join"
+  to = "/join.html"
+  status = 200
+
+[[redirects]]
+  from = "/demo"
+  to = "/join.html"
+  status = 200
+
+[[redirects]]
+  from = "/presentation"
+  to = "/presentation.html"
+  status = 200
+
+[[redirects]]
+  from = "/pitch"
+  to = "/presentation.html"
+  status = 200
+
+[[redirects]]
+  from = "/operator"
+  to = "/operator.html"
+  status = 200
+
+[[redirects]]
+  from = "/margin"
+  to = "/operator.html"
+  status = 200
+
+[[redirects]]
+  from = "/internal"
+  to = "/operator.html"
+  status = 200
+
+[[redirects]]
+  from = "/gallery"
+  to = "/emails/variants-gallery.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/variants"
+  to = "/emails/variants-gallery.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/welcome-email"
+  to = "/emails/welcome-email.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/welcome-:flavor"
+  to = "/emails/variants/welcome-:flavor.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/gmail-welcome"
+  to = "/emails/mocks/gmail-welcome-berry.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/gmail-welcome-:flavor"
+  to = "/emails/mocks/gmail-welcome-:flavor.html"
+  status = 200
+
+# Cache video + large PNGs aggressively so the preview loads fast
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Block indexing of any source files that might accidentally end up in
+# the deploy (scripts, docs, server.js, node_modules stuff). Robots.txt
+# handles crawlers; files themselves stay unlisted.
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    X-Robots-Tag = "noindex"

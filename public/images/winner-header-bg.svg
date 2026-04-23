@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+
+    <!-- BACKGROUND -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6B0020"/>
+      <stop offset="55%" stop-color="#450015"/>
+      <stop offset="100%" stop-color="#2A000A"/>
+    </linearGradient>
+    <radialGradient id="heroGlow" cx="35%" cy="38%" r="52%">
+      <stop offset="0%" stop-color="#FFDD00" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#2A000A" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft ambient glow around can -->
+    <radialGradient id="canGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E2003F" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#2A000A" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ============================================================
+         CAN MATERIALS — Red / Melon Blaze palette
+         ============================================================ -->
+
+    <!-- Lid top surface -->
+    <radialGradient id="lidTop" cx="30%" cy="25%" r="75%">
+      <stop offset="0%"   stop-color="#E85050"/>
+      <stop offset="38%"  stop-color="#C02040"/>
+      <stop offset="75%"  stop-color="#8B0028"/>
+      <stop offset="100%" stop-color="#4A0015"/>
+    </radialGradient>
+
+    <!-- Specular glint on lid -->
+    <linearGradient id="lidGlint" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="45%"  stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Side wall — cylindrical shading -->
+    <linearGradient id="sideWallH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#1F0008"/>
+      <stop offset="14%"  stop-color="#5A0018"/>
+      <stop offset="50%"  stop-color="#A82040"/>
+      <stop offset="86%"  stop-color="#5A0018"/>
+      <stop offset="100%" stop-color="#1F0008"/>
+    </linearGradient>
+    <linearGradient id="sideWallV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.30"/>
+    </linearGradient>
+
+    <!-- Base rim -->
+    <linearGradient id="baseRim" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#0F0008"/>
+      <stop offset="50%"  stop-color="#3A0012"/>
+      <stop offset="100%" stop-color="#0F0008"/>
+    </linearGradient>
+
+    <!-- Seam highlight -->
+    <linearGradient id="seamLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="dropShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+
+    <!-- Bottom page fade -->
+    <linearGradient id="pageFade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#2A000A" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2A000A" stop-opacity="1"/>
+    </linearGradient>
+
+  </defs>
+
+  <!-- BASE BG -->
+  <rect width="1200" height="600" fill="url(#bgGrad)"/>
+  <rect width="1200" height="600" fill="url(#heroGlow)"/>
+  <ellipse cx="855" cy="320" rx="300" ry="230" fill="url(#canGlow)"/>
+
+  <!-- ================================================================
+       N1CE POUCH CAN — identical geometry to welcome, red palette
+       ================================================================ -->
+
+  <g transform="translate(855, 310) rotate(-7)">
+
+    <!-- GROUND SHADOW -->
+    <ellipse cx="10" cy="112" rx="185" ry="15"
+             fill="#000000" opacity="0.42" filter="url(#dropShadow)"/>
+
+    <!-- BASE RIM -->
+    <ellipse cx="0" cy="90" rx="170" ry="14" fill="#0F0008"/>
+    <path d="M -170 80 A 170 14 0 0 0 170 80 L 170 90 A 170 14 0 0 1 -170 90 Z"
+          fill="url(#baseRim)"/>
+    <path d="M -150 80 A 150 12 0 0 0 150 80" fill="none"
+          stroke="#FFFFFF" stroke-width="0.4" opacity="0.12"/>
+
+    <!-- SIDE WALL -->
+    <path d="M -170 52 L -170 80 A 170 14 0 0 0 170 80 L 170 52 Z"
+          fill="url(#sideWallH)"/>
+    <path d="M -170 52 L -170 80 A 170 14 0 0 0 170 80 L 170 52 Z"
+          fill="url(#sideWallV)"/>
+
+    <!-- N!CE WORDMARK — white on red side wall (updated to correct logo) -->
+    <g transform="translate(-52, 48) scale(0.130)" fill="#FFFFFF">
+      <!-- N -->
+      <path d="M 20 20 L 20 260 L 70 260 L 70 110 L 170 260 L 220 260 L 220 20 L 170 20 L 170 170 L 70 20 Z"/>
+      <!-- ! dot -->
+      <rect x="262" y="20" width="38" height="42"/>
+      <!-- ! stem -->
+      <rect x="262" y="80" width="38" height="180"/>
+      <!-- C -->
+      <path d="M 470 20 C 530 20 580 50 590 100 L 540 110 C 535 80 510 65 480 65
+               C 450 65 430 90 430 140 C 430 190 450 215 480 215
+               C 510 215 535 200 540 170 L 590 180 C 580 230 530 260 470 260
+               C 400 260 360 215 360 140 C 360 65 400 20 470 20 Z"/>
+      <!-- E -->
+      <path d="M 620 20 L 780 20 L 780 65 L 670 65 L 670 115 L 760 115
+               L 760 160 L 670 160 L 670 215 L 780 215 L 780 260 L 620 260 Z"/>
+    </g>
+
+    <!-- Descriptor text below N1CE -->
+    <text x="0" y="77" text-anchor="middle"
+          font-family="Oswald, Arial Narrow, sans-serif"
+          font-size="6" font-weight="500" letter-spacing="2.5"
+          fill="#FFFFFF" opacity="0.55">NICOTINE POUCHES  ·  WINNER EDITION  ·  UFC 250</text>
+
+    <!-- SEAM / RIM -->
+    <ellipse cx="0" cy="52" rx="170" ry="14" fill="none"
+             stroke="url(#seamLine)" stroke-width="1.2"/>
+
+    <!-- LID -->
+    <ellipse cx="0" cy="0" rx="170" ry="52" fill="url(#lidTop)"/>
+
+    <!-- Lid highlight — upper-left glow -->
+    <ellipse cx="-55" cy="-25" rx="95" ry="24" fill="#FFFFFF" opacity="0.09"/>
+    <ellipse cx="-60" cy="-28" rx="52" ry="12" fill="#FFFFFF" opacity="0.12"/>
+
+    <!-- Lid perimeter edge -->
+    <ellipse cx="0" cy="0" rx="170" ry="52" fill="none"
+             stroke="url(#lidGlint)" stroke-width="0.6"/>
+
+    <!-- Swedish flag -->
+    <g transform="translate(28, -32) rotate(4)">
+      <rect x="-13" y="-9" width="26" height="18" rx="2.5"
+            fill="#006AA7" opacity="0.90"/>
+      <rect x="-13" y="-2.5" width="26" height="5" fill="#FECC02"/>
+      <rect x="-5" y="-9" width="4.5" height="18" fill="#FECC02"/>
+    </g>
+
+    <!-- Strength badge -->
+    <g transform="translate(68, -22)">
+      <circle r="12" fill="#FFFFFF" opacity="0.12"/>
+      <circle r="12" fill="none" stroke="#FFFFFF" stroke-width="0.6" opacity="0.30"/>
+      <text x="0" y="-1" text-anchor="middle" dominant-baseline="middle"
+            font-family="Oswald, Arial, sans-serif" font-size="11" font-weight="700"
+            fill="#FFFFFF" opacity="0.70">8</text>
+      <text x="0" y="8" text-anchor="middle"
+            font-family="Oswald, Arial, sans-serif" font-size="4" font-weight="600"
+            letter-spacing="0.5" fill="#FFFFFF" opacity="0.50">MG</text>
+    </g>
+
+    <!-- N certification circle -->
+    <g transform="translate(-115, -30)">
+      <circle r="10" fill="none" stroke="#FFFFFF" stroke-width="0.7" opacity="0.35"/>
+      <text x="0" y="0.5" text-anchor="middle" dominant-baseline="middle"
+            font-family="Arial Black, Helvetica, sans-serif" font-size="7"
+            font-weight="900" fill="#FFFFFF" opacity="0.45">N</text>
+    </g>
+
+    <!-- Flavor name vertical -->
+    <text transform="translate(-128, 18) rotate(-82)"
+          text-anchor="middle"
+          font-family="Oswald, Arial Narrow, sans-serif"
+          font-size="8" font-weight="700" letter-spacing="2.5"
+          fill="#FFFFFF" opacity="0.45">WINNER EDITION</text>
+
+    <!-- Sweden text -->
+    <text x="-105" y="36" text-anchor="middle"
+          font-family="Oswald, Arial Narrow, sans-serif"
+          font-size="5" font-weight="500" letter-spacing="1.5"
+          fill="#FFFFFF" opacity="0.30">SWEDEN</text>
+
+  </g>
+
+  <!-- Bottom fade -->
+  <rect x="0" y="410" width="1200" height="190" fill="url(#pageFade)"/>
+
+  <!-- Left vignette -->
+  <rect x="0" y="0" width="500" height="600" fill="url(#bgGrad)" opacity="0.48"/>
+
+</svg>

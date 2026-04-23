@@ -12,3 +12,7 @@ build/
 *.swo
 *~
 .env.production
+.cf-tunnel.out
+.tunnel-url.txt
+.claude/
+*.zip

@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Welcome to N1CE Circle · Jalapeño Glow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; }
+    body { margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #FAF7F2; }
+    a { color: #FFDD00; text-decoration: none; }
+    .heading { font-family: 'Anton', 'Arial Black', sans-serif; }
+    .accent { font-family: 'Oswald', 'Arial', sans-serif; }
+    .body-font { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+    @media screen and (max-width: 600px) {
+      .container { width: 100% !important; }
+      .h1 { font-size: 56px !important; line-height: 0.95 !important; }
+      .padding { padding: 36px 24px !important; }
+      .video-frame { height: 200px !important; }
+      .play-icon { width: 56px !important; height: 56px !important; }
+      .header-pad { padding: 60px 24px !important; }
+      .logo-img { width: 120px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0; padding:0; background-color:#FAF7F2;">
+  <div style="display:none; font-size:1px; color:#FAF7F2; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+    {{firstName}}, you're in. A personal message from Justin Gaethje + your member link inside.
+  </div>
+
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#FAF7F2;">
+    <tr>
+      <td align="center" style="padding:0;">
+        <table role="presentation" class="container" cellspacing="0" cellpadding="0" border="0" width="600" style="width:600px; max-width:600px; background-color:#FAF7F2;">
+
+          <!-- HERO with flavour banner -->
+          <tr>
+            <td class="header-pad"
+                background="/images/banners/banner-mint.svg"
+                bgcolor="#1D9E6F"
+                valign="middle"
+                align="left"
+                style="background-color:#1D9E6F; background-image:url('/images/banners/banner-mint.svg'); background-size:cover; background-position:center top; background-repeat:no-repeat; padding:80px 48px 90px;">
+
+              <img src="/images/n1ce-logo-white.png" width="140" alt="N1CE" class="logo-img" style="display:block; width:140px; max-width:140px; margin:0 0 40px 0; opacity:0.95;"/>
+
+              <p class="accent" style="margin:0 0 16px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.35em; text-transform:uppercase; color:#E8FCF0; font-weight:700;">Circle / Jalapeño Glow</p>
+
+              <h1 class="heading h1" style="margin:0 0 22px; font-family:'Anton','Arial Black',sans-serif; font-size:72px; line-height:0.92; letter-spacing:-0.02em; color:#FFFFFF; text-transform:uppercase; text-shadow:0 4px 24px rgba(0,0,0,0.55);">Welcome,<br/><span style="color:#4DD5A0;">{{firstName}}<span style="color:#FFDD00;">.</span></span></h1>
+
+              <p class="body-font" style="margin:0; font-family:'JetBrains Mono','Courier New',monospace; font-size:14px; color:#FAF7F2; line-height:1.7; max-width:380px; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Thanks for joining the N1CE Circle.</p>
+            </td>
+          </tr>
+
+          <!-- Gradient fade down to cream -->
+          <tr>
+            <td style="height:60px; line-height:60px; font-size:0; background:linear-gradient(180deg, #051810 0%, #115B40 25%, #97CFB7 55%, #CFEFDE 80%, #FAF7F2 100%);">&nbsp;</td>
+          </tr>
+
+          <!-- Video section -->
+          <tr>
+            <td class="padding" style="background-color:#FAF7F2; padding:40px 48px 36px;">
+              <p class="accent" style="margin:0 0 14px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.3em; color:#FFDD00; text-transform:uppercase; font-weight:700;">A message for you</p>
+              <h2 class="heading" style="margin:0 0 28px; font-family:'Anton','Arial Black',sans-serif; font-size:46px; line-height:1; color:#0A0A0A; text-transform:uppercase; letter-spacing:-0.01em;">From <span style="color:#1D9E6F;">Justin.</span></h2>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="padding:3px; background-color:#FFDD00;">
+                    <a href="{{videoUrl}}" style="text-decoration:none; color:inherit;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#0A0A0A;">
+                        <tr>
+                          <td class="video-frame" align="center" valign="middle" height="300" style="height:300px; background-color:#0A0A0A; background-image:url('{{videoThumbnailUrl}}'); background-size:cover; background-position:center;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                              <tr>
+                                <td class="play-icon" align="center" valign="middle" width="80" height="80" style="width:80px; height:80px; background-color:#FFDD00; border-radius:50%; border:3px solid #FFFFFF;">
+                                  <span style="font-family:'Arial',sans-serif; font-size:32px; color:#FFFFFF; line-height:1; padding-left:6px;">&#9654;</span>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color:#0A0A0A; padding:14px 18px;" align="left">
+                            <span class="accent" style="font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.25em; color:#E8FCF0; text-transform:uppercase;">&#9654; Personalized for {{firstName}} / Tap to play</span>
+                          </td>
+                        </tr>
+                      </table>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Gradient fade up to coloured referral section -->
+          <tr>
+            <td style="height:60px; line-height:60px; font-size:0; background:linear-gradient(180deg, #FAF7F2 0%, #CFEFDE 25%, #97CFB7 55%, #115B40 85%, #051810 100%);">&nbsp;</td>
+          </tr>
+
+          <!-- Referral section -->
+          <tr>
+            <td class="padding" valign="middle" style="background-color:#051810; background:linear-gradient(160deg, #051810 0%, #1D9E6F 55%, #117048 100%); padding:48px 48px 56px;">
+
+              <p class="accent" style="margin:0 0 14px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.3em; color:#E8FCF0; text-transform:uppercase; font-weight:700;">Your Member Link</p>
+
+              <h2 class="heading" style="margin:0 0 18px; font-family:'Anton','Arial Black',sans-serif; font-size:52px; line-height:0.95; color:#FFFFFF; text-transform:uppercase; letter-spacing:-0.02em;">Bring a<br/><span style="color:#4DD5A0;">friend.</span></h2>
+
+              <p class="body-font" style="margin:0 0 28px; font-family:'JetBrains Mono','Courier New',monospace; font-size:14px; color:#FAF7F2; line-height:1.65; max-width:440px; opacity:0.88;">Share your link. Anyone who joins through it goes into the draw too.</p>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="background-color:#0A0A0A; border-left:4px solid #FFDD00; padding:22px 24px;" align="left">
+                    <p class="accent" style="margin:0 0 10px; font-family:'Oswald','Arial',sans-serif; font-size:10px; letter-spacing:0.3em; color:#E8FCF0; text-transform:uppercase; font-weight:700;">Your link</p>
+                    <div class="body-font" style="font-family:'JetBrains Mono','Courier New',monospace; font-size:15px; color:#FFFFFF; word-break:break-all; font-weight:700;">n1ce.com/r/{{referralCode}}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:24px;">
+                <tr>
+                  <td style="background-color:#FFDD00;" align="center">
+                    <a href="https://n1ce.com/r/{{referralCode}}" style="display:inline-block; padding:16px 36px; font-family:'Anton','Arial Black',sans-serif; font-size:17px; letter-spacing:0.1em; color:#FFFFFF; text-decoration:none; text-transform:uppercase; font-weight:700;">Share My Link &rarr;</a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#0A0A0A; padding:36px 32px;" align="center">
+              <img src="/images/n1ce-logo-white.png" width="80" alt="N1CE" style="display:block; width:80px; max-width:80px; margin:0 auto 18px auto; opacity:0.95;"/>
+              <p class="accent" style="margin:0 0 14px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.3em; color:#4DD5A0; text-transform:uppercase; font-weight:700;">
+                <a href="#" style="color:#4DD5A0; text-decoration:none;">Instagram</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="#" style="color:#FFDD00; text-decoration:none;">TikTok</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="#" style="color:#E8FCF0; text-decoration:none;">Contact</a>
+              </p>
+              <p style="margin:0 0 6px; font-family:'JetBrains Mono','Courier New',monospace; font-size:11px; color:#FAF7F2; opacity:0.55;">N1CE / Stockholm, Sweden</p>
+              <p style="margin:0; font-family:'JetBrains Mono','Courier New',monospace; font-size:10px; color:#FAF7F2; opacity:0.45;">© 2026 N1CE &middot; <a href="#" style="color:#FAF7F2; text-decoration:underline;">Unsubscribe</a> &middot; Must be 21+</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PREVIEW-ONLY CLIENT-SIDE ENHANCEMENT (Netlify-compatible)
+       Runs in browser only. Email clients strip <script>, so the
+       original merge-tag based email is untouched when sent. -->
+  <script>
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var name = (qs.get('name') || '').trim();
+
+    function replaceInTextNodes(token, replacement) {
+      var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      var matches = [], n;
+      while (n = walker.nextNode()) {
+        if (n.nodeValue.indexOf(token) !== -1) matches.push(n);
+      }
+      matches.forEach(function(m){ m.nodeValue = m.nodeValue.split(token).join(replacement); });
+    }
+
+    // Resolve {{videoUrl}} in attributes + clear the thumbnail merge tag
+    var VIDEO_URL = '/videos/message-for-you.mp4';
+    document.querySelectorAll('[href],[src]').forEach(function(el){
+      ['href','src'].forEach(function(attr){
+        var v = el.getAttribute(attr);
+        if (v && v.indexOf('{{videoUrl}}') !== -1) {
+          el.setAttribute(attr, v.replace(/\{\{videoUrl\}\}/g, VIDEO_URL));
+        }
+      });
+    });
+    document.querySelectorAll('[style]').forEach(function(el){
+      var s = el.getAttribute('style');
+      if (s && s.indexOf('{{videoThumbnailUrl}}') !== -1) {
+        el.setAttribute('style', s.replace(/\{\{videoThumbnailUrl\}\}/g, ''));
+      }
+    });
+
+    if (name) replaceInTextNodes('{{firstName}}', name);
+
+    // Swap the video-card's thumbnail cell with an inline <video>, preserving
+    // the outer coloured border AND the "Personalized for X / Tap to play"
+    // caption row. Explicit dimensions prevent collapse before metadata loads.
+    document.querySelectorAll('a[href*="/videos/"]').forEach(function(a){
+      var videoSrc = a.getAttribute('href');
+      var frameCell = a.querySelector('.video-frame') || a.querySelector('td');
+      if (frameCell) {
+        frameCell.innerHTML = '';
+        frameCell.style.backgroundImage = 'none';
+        frameCell.style.padding = '0';
+        if (!frameCell.getAttribute('height')) frameCell.setAttribute('height', '300');
+        frameCell.style.height = '300px';
+
+        var video = document.createElement('video');
+        video.src = videoSrc;
+        video.controls = true;
+        video.preload = 'metadata';
+        video.playsInline = true;
+        video.setAttribute('width', '100%');
+        video.setAttribute('height', '300');
+        video.style.cssText = 'width:100%;height:300px;display:block;background:#0A0A0A;object-fit:contain;';
+        frameCell.appendChild(video);
+      }
+      // Unwrap the anchor — keep the inner table (with its caption row) intact
+      while (a.firstChild) a.parentNode.insertBefore(a.firstChild, a);
+      if (a.parentNode) a.parentNode.removeChild(a);
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operator · Margin Dashboard (Internal)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #22C55E;
+      --cyan:  #06B6D4;
+      --amber: #F59E0B;
+      --red:   #EF4444;
+      --hot:   #FF5600;
+      --yellow:#FFDD00;
+      --bg-0:  #08090C;
+      --bg-1:  #0F1116;
+      --bg-2:  #151821;
+      --border: rgba(255,255,255,0.08);
+      --text:  #E5E7EB;
+      --muted: rgba(229, 231, 235, 0.55);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg-0);
+      color: var(--text);
+      font-family: 'Oswald', Arial, sans-serif;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(34,197,94,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 90% 100%, rgba(255,86,0,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container { max-width: 1400px; margin: 0 auto; padding: 32px; position: relative; z-index: 1; }
+
+    /* ─── HEADER ──────────────────────────── */
+    header {
+      padding: 24px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .logo-block {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .eyebrow {
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--amber); font-weight: 700;
+    }
+    h1.title {
+      font-family: 'Anton', sans-serif;
+      font-size: 42px; line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    h1.title .tint { color: var(--green); }
+    .header-meta {
+      display: flex; gap: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: var(--muted);
+    }
+    .header-meta .val { color: var(--text); display: block; font-size: 16px; margin-top: 2px; }
+
+    /* ─── CONFIDENTIAL BADGE ──────────────────── */
+    .confidential {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      background: rgba(239,68,68,0.12);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 4px;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .confidential .dot {
+      width: 6px; height: 6px; background: var(--red);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ─── SECTION ─────────────────────────── */
+    .section { padding: 48px 0; }
+    .section:not(:last-child) { border-bottom: 1px solid var(--border); }
+    .section-head {
+      display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px;
+    }
+    .section-head h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: 32px; letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .section-head .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--muted); letter-spacing: 0.25em;
+    }
+    .section-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; line-height: 1.65; color: var(--muted);
+      max-width: 720px; margin-bottom: 32px;
+    }
+
+    /* ─── COST STRUCTURE TABLE ────────────── */
+    .cost-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .cost-grid.five-col { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+    .cost-cell {
+      background: var(--bg-1);
+      padding: 18px 20px;
+    }
+    .cost-cell.head {
+      background: var(--bg-2);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .cost-cell .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: var(--muted); margin-bottom: 4px;
+    }
+    .cost-cell .val {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px; line-height: 1; letter-spacing: -0.01em;
+    }
+    .cost-cell .val.cost { color: var(--amber); }
+    .cost-cell .val.charge { color: var(--cyan); }
+    .cost-cell .val.profit { color: var(--green); }
+    .cost-cell .note { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* ─── KPI CARDS ──────────────────────── */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 900px) {
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+    }
+    .kpi {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi.good { border-left: 3px solid var(--green); }
+    .kpi.warn { border-left: 3px solid var(--amber); }
+    .kpi.cost { border-left: 3px solid var(--cyan); }
+    .kpi.risk { border-left: 3px solid var(--red); }
+    .kpi .kpi-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .kpi .kpi-value {
+      font-family: 'Anton', sans-serif;
+      font-size: 36px; line-height: 1; letter-spacing: -0.02em;
+    }
+    .kpi.good .kpi-value { color: var(--green); }
+    .kpi.cost .kpi-value { color: var(--cyan); }
+    .kpi .kpi-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ─── CALCULATOR ──────────────────────── */
+    .calc {
+      background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      margin-top: 32px;
+    }
+    .calc h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+    .calc .sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .calc-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 90px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .calc-row label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .calc-row input[type="range"] {
+      width: 100%; accent-color: var(--green);
+    }
+    .calc-row .readout {
+      font-family: 'Anton', sans-serif;
+      font-size: 20px; text-align: right;
+      color: var(--text);
+    }
+    .calc-output {
+      margin-top: 24px;
+      padding: 20px;
+      background: var(--bg-0);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+    .calc-output .cell {
+      background: var(--bg-0);
+      padding: 18px 20px;
+    }
+    .calc-output .cell-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .calc-output .cell-value {
+      font-family: 'Anton', sans-serif;
+      font-size: 42px; line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .calc-output .cell-value.you-pay { color: var(--amber); }
+    .calc-output .cell-value.they-pay { color: var(--cyan); }
+    .calc-output .cell-value.profit { color: var(--green); }
+    .calc-output .cell-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ─── LOGIC BOX ────────────────────────── */
+    .logic {
+      background: rgba(34, 197, 94, 0.04);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+    .logic h4 {
+      font-family: 'Anton', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .logic ol {
+      padding-left: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .logic ol li { margin-bottom: 8px; }
+    .logic ol li strong { color: var(--green); font-weight: 700; }
+    .logic ol li em { font-style: normal; color: var(--amber); }
+
+    /* ─── PROJECTIONS TABLE ───────────────── */
+    .proj-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+    .proj-table th, .proj-table td {
+      padding: 14px 18px;
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-table th:first-child, .proj-table td:first-child { text-align: left; }
+    .proj-table th {
+      background: var(--bg-2);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .proj-table tr:last-child td { border-bottom: 0; }
+    .proj-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .proj-table .col-cost { color: var(--amber); }
+    .proj-table .col-charge { color: var(--cyan); }
+    .proj-table .col-profit { color: var(--green); font-weight: 700; }
+
+    /* ─── PROVIDER COMPARISON ──────────── */
+    .providers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    @media (max-width: 900px) { .providers { grid-template-columns: 1fr; } }
+    .provider {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .provider.best { border-color: var(--green); background: linear-gradient(135deg, rgba(34,197,94,0.06), transparent); }
+    .provider .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .provider.best .tag { background: var(--green); color: #000; }
+    .provider.good .tag { background: var(--cyan); color: #000; }
+    .provider.skip .tag { background: var(--muted); color: #000; }
+    .provider h5 {
+      font-family: 'Anton', sans-serif;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .provider .stat-line {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .provider .stat-line strong { color: var(--text); }
+
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ═══ HEADER ═══ -->
+    <header>
+      <div class="logo-block">
+        <div class="confidential"><span class="dot"></span>Internal · Operator-only</div>
+        <span class="eyebrow">N1CE Circle · Financial model</span>
+        <h1 class="title">Margin <span class="tint">Dashboard.</span></h1>
+      </div>
+      <div class="header-meta">
+        <div>
+          <span>Markup</span>
+          <span class="val">1.50&times;</span>
+        </div>
+        <div>
+          <span>Provider</span>
+          <span class="val">Amazon SES</span>
+        </div>
+        <div>
+          <span>Last reviewed</span>
+          <span class="val" id="today"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ SECTION 1 — TL;DR ═══ -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">01 / 05</span>
+        <h2>TL;DR — the money per email</h2>
+      </div>
+      <p class="section-sub">
+        Send 1 email through the N1CE system. Your true variable cost is $0.0001.
+        You bill the client $0.00015. Your gross profit is $0.00005 — exactly 50% margin.
+        Infrastructure is flat ($0–$19/mo depending on scale) and gets eaten by fixed costs below.
+      </p>
+
+      <div class="kpis">
+        <div class="kpi cost">
+          <div class="kpi-label">Your cost per 10k emails</div>
+          <div class="kpi-value">$1.00</div>
+          <div class="kpi-sub">Amazon SES at $0.10 per 1k</div>
+        </div>
+        <div class="kpi warn">
+          <div class="kpi-label">Client bills (1.5×)</div>
+          <div class="kpi-value">$1.50</div>
+          <div class="kpi-sub">$0.00015 per email</div>
+        </div>
+        <div class="kpi good">
+          <div class="kpi-label">Gross profit per 10k</div>
+          <div class="kpi-value">$0.50</div>
+          <div class="kpi-sub">= 50% margin on variable cost</div>
+        </div>
+        <div class="kpi risk">
+          <div class="kpi-label">Break-even volume</div>
+          <div class="kpi-value">380k /mo</div>
+          <div class="kpi-sub">Covers $19 Netlify Pro tier</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 2 — COST BREAKDOWN ═══ -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">02 / 05</span>
+        <h2>Where the money actually goes</h2>
+      </div>
+      <p class="section-sub">
+        Every 10,000 emails sent. Apples to apples. Cost column = what your bank account actually pays.
+        Charge column = what the client's invoice shows them (1.5&times;). Margin column = your take.
+      </p>
+
+      <div class="cost-grid five-col">
+        <div class="cost-cell head">Line item</div>
+        <div class="cost-cell head">Your cost</div>
+        <div class="cost-cell head">Client charge</div>
+        <div class="cost-cell head">Margin</div>
+        <div class="cost-cell head">Note</div>
+
+        <div class="cost-cell">
+          <div class="val" style="font-size:16px;">SES email delivery</div>
+        </div>
+        <div class="cost-cell"><div class="val cost">$1.00</div></div>
+        <div class="cost-cell"><div class="val charge">$1.50</div></div>
+        <div class="cost-cell"><div class="val profit">$0.50</div></div>
+        <div class="cost-cell"><div class="note">Variable — only when emails go out</div></div>
+
+        <div class="cost-cell">
+          <div class="val" style="font-size:16px;">Netlify hosting</div>
+        </div>
+        <div class="cost-cell"><div class="val cost">$0</div></div>
+        <div class="cost-cell"><div class="val charge">—</div></div>
+        <div class="cost-cell"><div class="val profit">$0</div></div>
+        <div class="cost-cell"><div class="note">Free tier · 100GB bandwidth</div></div>
+
+        <div class="cost-cell">
+          <div class="val" style="font-size:16px;">Domain (annualised)</div>
+        </div>
+        <div class="cost-cell"><div class="val cost">$0.03</div></div>
+        <div class="cost-cell"><div class="val charge">—</div></div>
+        <div class="cost-cell"><div class="val profit">-$0.03</div></div>
+        <div class="cost-cell"><div class="note">$12/yr / 10k sends in a reasonable month</div></div>
+
+        <div class="cost-cell">
+          <div class="val" style="font-size:16px;">SES warm-up maintenance</div>
+        </div>
+        <div class="cost-cell"><div class="val cost">$0</div></div>
+        <div class="cost-cell"><div class="val charge">—</div></div>
+        <div class="cost-cell"><div class="val profit">$0</div></div>
+        <div class="cost-cell"><div class="note">One-time setup, then hands-off</div></div>
+      </div>
+
+      <div class="logic">
+        <h4>→ The 1.5× markup covers what you're actually selling</h4>
+        <ol>
+          <li>SES is <strong>raw plumbing</strong> — you're packaging it with template rendering, HMAC validation, flavour routing, retry logic, and monitoring. That's the <em>real</em> product.</li>
+          <li>You're also absorbing <strong>development & maintenance time</strong>. The 50% gross margin is your hourly rate paid via volume, not a fee line item the client needs to see.</li>
+          <li><strong>Competitors charge $20–200/mo fixed</strong> (Klaviyo, Mailchimp). A usage-based model at $1.50 per 10k looks <em>cheap</em> to a Shopify merchant until volume is high — then it's still cheaper than Klaviyo at 200k+ sends.</li>
+          <li>You keep pricing <em>transparent</em>: one line, one formula. Client trusts it. No hidden tiers, no "pro plan" gatekeeping.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 3 — PROVIDER COMPARISON ═══ -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">03 / 05</span>
+        <h2>Why Amazon SES is the right default</h2>
+      </div>
+      <p class="section-sub">
+        You want the cheapest reliable SMTP relay. SES wins at scale, Gmail wins for dev, everything
+        else is either expensive or a closed ecosystem.
+      </p>
+
+      <div class="providers">
+        <div class="provider best">
+          <span class="tag">USE THIS</span>
+          <h5>Amazon SES</h5>
+          <p class="stat-line">
+            <strong>$0.10 / 1,000</strong> — linear, no tiers<br/>
+            <strong>100k–10M /day</strong> possible on warmed IPs<br/>
+            Enterprise deliverability, full control
+          </p>
+        </div>
+        <div class="provider good">
+          <span class="tag">DEV ONLY</span>
+          <h5>Gmail SMTP</h5>
+          <p class="stat-line">
+            <strong>Free</strong> up to 500/day (personal)<br/>
+            Easy app-password setup<br/>
+            Hard cap — not for production
+          </p>
+        </div>
+        <div class="provider skip">
+          <span class="tag">SKIP</span>
+          <h5>Klaviyo · SendGrid</h5>
+          <p class="stat-line">
+            <strong>$20–$150+/mo</strong> fixed tiers<br/>
+            Overkill — we don't need their marketing UI<br/>
+            Clients can add later if they want
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 4 — PROJECTION TABLE ═══ -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">04 / 05</span>
+        <h2>Revenue projection at different volumes</h2>
+      </div>
+      <p class="section-sub">
+        Based on the 1.5× markup. All figures are <strong>monthly</strong>. <em>Your take</em> is gross profit
+        before Netlify Pro tier ($19/mo) which only becomes necessary somewhere around 300k–500k/mo bandwidth.
+      </p>
+
+      <table class="proj-table">
+        <thead>
+          <tr>
+            <th>Volume / month</th>
+            <th>Your SES cost</th>
+            <th>Client invoice (1.5×)</th>
+            <th>Gross profit</th>
+            <th>Annualised</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10,000 emails</td>
+            <td class="col-cost">$1.00</td>
+            <td class="col-charge">$1.50</td>
+            <td class="col-profit">$0.50</td>
+            <td>$6 / yr</td>
+          </tr>
+          <tr>
+            <td>50,000 emails</td>
+            <td class="col-cost">$5.00</td>
+            <td class="col-charge">$7.50</td>
+            <td class="col-profit">$2.50</td>
+            <td>$30 / yr</td>
+          </tr>
+          <tr>
+            <td>100,000 emails</td>
+            <td class="col-cost">$10.00</td>
+            <td class="col-charge">$15.00</td>
+            <td class="col-profit">$5.00</td>
+            <td>$60 / yr</td>
+          </tr>
+          <tr>
+            <td>300,000 emails (≈10k/day)</td>
+            <td class="col-cost">$30.00</td>
+            <td class="col-charge">$45.00</td>
+            <td class="col-profit">$15.00</td>
+            <td>$180 / yr</td>
+          </tr>
+          <tr>
+            <td>1,000,000 emails</td>
+            <td class="col-cost">$100.00</td>
+            <td class="col-charge">$150.00</td>
+            <td class="col-profit">$50.00</td>
+            <td>$600 / yr</td>
+          </tr>
+          <tr>
+            <td>5,000,000 emails</td>
+            <td class="col-cost">$500.00</td>
+            <td class="col-charge">$750.00</td>
+            <td class="col-profit">$250.00</td>
+            <td>$3,000 / yr</td>
+          </tr>
+          <tr>
+            <td>10,000,000 emails</td>
+            <td class="col-cost">$1,000.00</td>
+            <td class="col-charge">$1,500.00</td>
+            <td class="col-profit">$500.00</td>
+            <td>$6,000 / yr</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="logic">
+        <h4>→ Scaling logic</h4>
+        <ol>
+          <li>The <strong>minimum viable</strong> scale to be worth your time is <em>~300k/mo</em>. That's $15/mo margin, or $180/yr — still modest, but the system is running hands-off.</li>
+          <li>At <strong>1M emails/mo</strong> you're netting $50/mo = $600/yr. That's the first revenue milestone worth flagging to the client as a <em>"you've grown"</em> moment.</li>
+          <li>At <strong>5M+/mo</strong> you should consider <em>raising the multiplier to 2×</em> or introducing a flat base fee ($99/mo). Clients at that size are saving thousands vs Klaviyo — a $500/mo profit line is still underpriced for enterprise support.</li>
+          <li>Cost stays <strong>perfectly linear</strong> — SES never throttles you with surprise pricing. No "email credits expire" nonsense.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 5 — LIVE CALCULATOR ═══ -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">05 / 05</span>
+        <h2>Calculator</h2>
+      </div>
+      <p class="section-sub">
+        Drag the slider to a monthly volume. See your cost, what you charge, and what you pocket.
+      </p>
+
+      <div class="calc">
+        <h3>What do I make at X emails / month?</h3>
+        <p class="sub">Real-time — move the slider.</p>
+        <div class="calc-row">
+          <label for="volume">Volume / month</label>
+          <input type="range" id="volume" min="1000" max="10000000" step="1000" value="300000" />
+          <div class="readout" id="volume-readout">300k</div>
+        </div>
+        <div class="calc-row">
+          <label for="markup">Markup multiplier</label>
+          <input type="range" id="markup" min="1" max="3" step="0.05" value="1.5" />
+          <div class="readout" id="markup-readout">1.50×</div>
+        </div>
+
+        <div class="calc-output">
+          <div class="cell">
+            <div class="cell-label">Your cost</div>
+            <div class="cell-value you-pay" id="out-cost">$30.00</div>
+            <div class="cell-sub">SES: $0.10 per 1k</div>
+          </div>
+          <div class="cell">
+            <div class="cell-label">Client invoice</div>
+            <div class="cell-value they-pay" id="out-charge">$45.00</div>
+            <div class="cell-sub">Volume × markup × unit cost</div>
+          </div>
+          <div class="cell">
+            <div class="cell-label">Your profit</div>
+            <div class="cell-value profit" id="out-profit">$15.00</div>
+            <div class="cell-sub"><span id="out-margin">33.3%</span> margin on invoice</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Internal document · not for client distribution · N1CE Circle · <a href="/presentation" style="color:var(--cyan);">view client pitch →</a></p>
+    </footer>
+
+  </div>
+
+<script>
+  // Today's date display
+  document.getElementById('today').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+  // Live calculator
+  const volumeEl = document.getElementById('volume');
+  const markupEl = document.getElementById('markup');
+  const volumeReadout = document.getElementById('volume-readout');
+  const markupReadout = document.getElementById('markup-readout');
+  const outCost = document.getElementById('out-cost');
+  const outCharge = document.getElementById('out-charge');
+  const outProfit = document.getElementById('out-profit');
+  const outMargin = document.getElementById('out-margin');
+
+  const SES_RATE = 0.0001; // $0.10 per 1,000 = $0.0001 per email
+
+  function fmtVolume(n) {
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + 'M';
+    if (n >= 1_000) return (n / 1_000).toFixed(n % 1_000 === 0 ? 0 : 1) + 'k';
+    return String(n);
+  }
+  function fmtMoney(n) {
+    if (n >= 10_000) return '$' + Math.round(n).toLocaleString();
+    if (n >= 100) return '$' + n.toFixed(0);
+    return '$' + n.toFixed(2);
+  }
+
+  function recalc() {
+    const volume = parseInt(volumeEl.value, 10);
+    const markup = parseFloat(markupEl.value);
+    const cost = volume * SES_RATE;
+    const charge = cost * markup;
+    const profit = charge - cost;
+    const margin = charge > 0 ? (profit / charge) * 100 : 0;
+
+    volumeReadout.textContent = fmtVolume(volume);
+    markupReadout.textContent = markup.toFixed(2) + '×';
+    outCost.textContent = fmtMoney(cost);
+    outCharge.textContent = fmtMoney(charge);
+    outProfit.textContent = fmtMoney(profit);
+    outMargin.textContent = margin.toFixed(1) + '%';
+  }
+  volumeEl.addEventListener('input', recalc);
+  markupEl.addEventListener('input', recalc);
+  recalc();
+</script>
+</body>
+</html>

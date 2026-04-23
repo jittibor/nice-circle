@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="You've been invited to N1CE Circle. Pre-launch access for the discerning." />
+  <title>You've Been Invited — N1CE Circle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #27BC76;
+      --pink: #F085C6;
+      --orange: #FF5600;
+      --red: #E2003F;
+      --dark: #002419;
+      --black: #0A0A0A;
+      --cream: #FAF7F2;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .nav {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      font-size: 12px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo { font-family: 'Anton', sans-serif; font-size: 28px; letter-spacing: 0.05em; }
+    .nav-tag { opacity: 0.7; }
+
+    .invitation-band {
+      background: var(--orange);
+      color: var(--black);
+      text-align: center;
+      padding: 14px 32px;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 80px 32px 60px;
+      text-align: center;
+      background: var(--black);
+      position: relative;
+    }
+
+    .hero-inner { max-width: 900px; margin: 0 auto; }
+
+    .invited-by {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.25em;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 24px;
+    }
+
+    .invited-by .name { color: var(--white); }
+
+    .hero h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(56px, 11vw, 156px);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 .accent { color: var(--orange); }
+
+    .hero-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      max-width: 560px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+
+    .info {
+      background: var(--cream);
+      color: var(--black);
+      padding: 64px 48px;
+    }
+
+    .section-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 14px;
+      color: var(--orange);
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+    }
+
+    .info h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .info p { font-size: 14px; color: #333; margin-bottom: 16px; max-width: 460px; }
+
+    .perks {
+      list-style: none;
+      margin-top: 32px;
+      border-top: 2px solid var(--black);
+    }
+
+    .perks li {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .perks li::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: var(--orange);
+    }
+    .perks li:nth-child(2)::before { background: var(--green); }
+    .perks li:nth-child(3)::before { background: var(--pink); }
+
+    .form-card {
+      background: var(--green);
+      color: var(--black);
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-card .label {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.2em;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .form-card h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    .field label {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: rgba(0,0,0,0.7);
+    }
+
+    .field input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--black);
+      padding: 12px 0;
+      color: var(--black);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      outline: none;
+    }
+    .field input:focus { border-bottom-color: var(--white); }
+    .field input::placeholder { color: rgba(0,0,0,0.35); }
+
+    .ref-tag {
+      background: var(--black);
+      color: var(--orange);
+      padding: 12px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 22px;
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.15s;
+    }
+
+    .submit-btn:hover { background: var(--orange); }
+    .submit-btn:disabled { background: #555; cursor: not-allowed; }
+
+    .legal { font-size: 11px; color: rgba(0,0,0,0.6); margin-top: 20px; line-height: 1.6; }
+
+    .status {
+      margin-top: 20px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      display: none;
+    }
+    .status.success { display: block; background: var(--black); color: var(--white); }
+    .status.error { display: block; background: var(--red); color: var(--white); }
+
+    .prize {
+      background: var(--pink);
+      color: var(--black);
+      padding: 80px 32px;
+      text-align: center;
+    }
+
+    .prize-inner { max-width: 900px; margin: 0 auto; }
+    .prize .section-num { color: var(--black); }
+
+    .prize h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .prize p { max-width: 600px; margin: 0 auto 32px; font-size: 15px; }
+
+    .stat-block {
+      background: var(--black);
+      color: var(--white);
+      display: inline-block;
+      padding: 24px 36px;
+      font-family: 'Anton', sans-serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .stat-block .stat-num { font-size: 48px; color: var(--orange); display: block; line-height: 1; margin-bottom: 6px; }
+    .stat-block .stat-label { font-size: 12px; }
+
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.6);
+      padding: 40px 32px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+    footer a { color: var(--white); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--orange); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav-logo">N1CE</span>
+    <span class="nav-tag">FAR FROM ORDINARY</span>
+  </nav>
+
+  <div class="invitation-band">YOU'VE BEEN INVITED · BY-INVITATION-ONLY ACCESS</div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="invited-by">Invited by <span class="name" id="referrerName">a Circle Member</span></div>
+      <h1>You're<br/><span class="accent">In.</span></h1>
+      <p class="hero-sub">A current member just unlocked your access to N1CE Circle. Claim your seat and you're entered to win the meet &amp; greet with Justin Gaethje at UFC Freedom 250.</p>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="info">
+      <div class="section-num">/ 01 — WHAT THIS MEANS</div>
+      <h2>The Circle is invitation only.</h2>
+      <p>You're getting in early because someone in N1CE Circle put your name forward. Membership grants pre-launch access on June 14, 2026 and entry into every Circle benefit.</p>
+      <ul class="perks">
+        <li>Early Access to N1CE Drops</li>
+        <li>Auto-Entry: UFC Freedom 250 Draw</li>
+        <li>Your Own Referral Link to Share</li>
+      </ul>
+    </div>
+
+    <div class="form-card">
+      <div class="label">/ Accept Invitation</div>
+      <h3>Claim Your Seat.</h3>
+      <div class="ref-tag" id="refTag">REF-CODE: <span id="refCodeDisplay">Loading...</span></div>
+      <form id="referralForm">
+        <input type="hidden" id="referralCode" name="referralCode" />
+        <div class="field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Your name" required minlength="2" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required />
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Accept Invitation →</button>
+        <p class="legal">By accepting, you agree to receive emails about N1CE products, events, and the meet &amp; greet draw. Unsubscribe anytime. Must be 21+.</p>
+        <div class="status" id="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="prize">
+    <div class="prize-inner">
+      <div class="section-num">/ 02 — THE DRAW</div>
+      <h2>Meet Gaethje.</h2>
+      <p>Two Circle members will be randomly selected to meet UFC champion Justin Gaethje at UFC Freedom 250. You're entered the moment you accept.</p>
+      <div class="stat-block">
+        <span class="stat-num">06.14.26</span>
+        <span class="stat-label">Draw Date</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Contact</a>
+    </div>
+    <p style="margin-top: 18px;">© 2026 N1CE. All rights reserved. Must be 21+ to join.</p>
+  </footer>
+
+  <script>
+    // Read referral code from URL: ?ref=abc123xy
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref') || '';
+    document.getElementById('referralCode').value = refCode;
+    document.getElementById('refCodeDisplay').textContent = refCode || 'NO CODE';
+
+    const form = document.getElementById('referralForm');
+    const status = document.getElementById('status');
+    const btn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!refCode) {
+        status.className = 'status error';
+        status.textContent = 'Missing referral code. Open the original invite link.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      status.className = 'status';
+      status.textContent = '';
+
+      const data = {
+        firstName: form.firstName.value.trim(),
+        email: form.email.value.trim(),
+        referralCode: refCode
+      };
+
+      try {
+        const res = await fetch('/api/circle/referral-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          status.className = 'status success';
+          status.innerHTML = `Welcome, ${data.firstName}. Member ID: <strong>${result.memberId}</strong>. Check your inbox.`;
+          form.reset();
+          btn.textContent = 'Seat Claimed ✓';
+        } else {
+          status.className = 'status error';
+          status.textContent = result.message || 'Sign up failed. Try again.';
+          btn.disabled = false;
+          btn.textContent = 'Accept Invitation →';
+        }
+      } catch (err) {
+        status.className = 'status error';
+        status.textContent = 'Network error. Try again.';
+        btn.disabled = false;
+        btn.textContent = 'Accept Invitation →';
+      }
+    });
+  </script>
+</body>
+</html>

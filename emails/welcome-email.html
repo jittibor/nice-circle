@@ -1,401 +1,274 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to N'ICE Circle</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="supported-color-schemes" content="light dark" />
+  <title>Welcome to N1CE Circle.</title>
 
-        body {
-            font-family: 'Maison Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #f5f5f5;
-            line-height: 1.6;
-            color: #333;
-        }
+  <!--
+  =============================================================================
+  N1CE CIRCLE / WELCOME EMAIL
+  =============================================================================
+  MERGE TAGS:
+    {{firstName}}            ->  Klaviyo {{ first_name }}
+    {{referralCode}}         ->  Klaviyo {{ event.referral_code }}
+    {{videoUrl}}             ->  Klaviyo {{ event.video_url }}
+    {{videoThumbnailUrl}}    ->  Klaviyo {{ event.video_thumb }}
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #ffffff;
-        }
+  BRAND PALETTE (core):
+    Purple      #4A1E6F   (primary hero)
+    Deep Purple #1A0930   (footer, panels)
+    Cream       #FAF7F2   (body canvas)
+    Orange      #FF5600   (accent / CTA)
+    Red         #E2003F   (accent / highlight)
+    Pink        #F085C6   (soft accent)
+    Yellow      #FFDD00   (hero highlight)
+    Black       #0A0A0A   (type)
+  =============================================================================
+  -->
 
-        .header {
-            background-color: #ffffff;
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 3px solid #1FA894;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #1FA894;
-            letter-spacing: 2px;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #1FA894 0%, #FF1E8E 100%);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Timmons NY', serif;
-            font-size: 36px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 0;
-            opacity: 0.95;
-        }
-
-        .content {
-            padding: 40px 30px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section h2 {
-            font-family: 'Timmons NY', serif;
-            font-size: 24px;
-            color: #1FA894;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .section p {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 12px;
-        }
-
-        .benefits {
-            background-color: #f9f9f9;
-            border-left: 4px solid #FF6B2C;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .benefits li {
-            list-style: none;
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-            font-size: 15px;
-            color: #555;
-        }
-
-        .benefits li:before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: #FF6B2C;
-            font-weight: bold;
-        }
-
-        .prize-section {
-            background: linear-gradient(135deg, #FFF9E6 0%, #FFEBCC 100%);
-            border-radius: 8px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-            border: 2px solid #FFDD00;
-        }
-
-        .prize-section h3 {
-            font-family: 'Timmons NY', serif;
-            font-size: 20px;
-            color: #C4003C;
-            margin-bottom: 12px;
-        }
-
-        .prize-section p {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .odds {
-            font-size: 14px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .timeline {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 25px;
-            margin: 25px 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-marker {
-            background-color: #1FA894;
-            color: white;
-            width: 100px;
-            padding: 8px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 13px;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
-
-        .timeline-content {
-            flex-grow: 1;
-        }
-
-        .timeline-content p {
-            font-size: 14px;
-            margin: 0;
-            color: #555;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            margin: 10px 5px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .cta-primary {
-            background-color: #FF6B2C;
-            color: white;
-        }
-
-        .cta-primary:hover {
-            background-color: #E55A1D;
-            transform: translateY(-2px);
-        }
-
-        .cta-secondary {
-            background-color: #FF1E8E;
-            color: white;
-        }
-
-        .cta-secondary:hover {
-            background-color: #E60B7B;
-            transform: translateY(-2px);
-        }
-
-        .social-links {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            margin: 0 8px;
-            background-color: #1FA894;
-            color: white;
-            text-decoration: none;
-            border-radius: 50%;
-            line-height: 40px;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: #FF6B2C;
-        }
-
-        .footer {
-            background-color: #1a1a1a;
-            color: #aaa;
-            padding: 30px;
-            text-align: center;
-            font-size: 12px;
-            border-top: 3px solid #FF6B2C;
-        }
-
-        .footer p {
-            margin-bottom: 10px;
-        }
-
-        .footer a {
-            color: #FF6B2C;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .divider {
-            height: 1px;
-            background-color: #e0e0e0;
-            margin: 30px 0;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                width: 100% !important;
-            }
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .content {
-                padding: 25px 20px;
-            }
-
-            .cta-button {
-                display: block;
-                margin: 10px 0;
-            }
-
-            .timeline-item {
-                flex-direction: column;
-            }
-
-            .timeline-marker {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; }
+    body { margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #FAF7F2; }
+    a { color: #FF5600; text-decoration: none; }
+    .heading { font-family: 'Anton', 'Arial Black', sans-serif; }
+    .accent { font-family: 'Oswald', 'Arial', sans-serif; }
+    .body-font { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+    @media screen and (max-width: 600px) {
+      .container { width: 100% !important; }
+      .h1 { font-size: 56px !important; line-height: 0.95 !important; }
+      .padding { padding: 36px 24px !important; }
+      .video-frame { height: 200px !important; }
+      .play-icon { width: 56px !important; height: 56px !important; }
+      .header-pad { padding: 60px 24px !important; }
+      .logo-img { width: 120px !important; }
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">N'ICE</div>
-        </div>
+<body style="margin:0; padding:0; background-color:#FAF7F2;">
+  <!-- Pre-header (hidden preview text) -->
+  <div style="display:none; font-size:1px; color:#FAF7F2; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+    {{firstName}}, you're in. A personal message from Justin Gaethje + your member link inside.
+  </div>
 
-        <!-- Hero Section -->
-        <div class="hero">
-            <h1>Welcome to N'ICE Circle, {{firstName}}</h1>
-            <p>You're now part of something far from ordinary</p>
-        </div>
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#FAF7F2;">
+    <tr>
+      <td align="center" style="padding:0;">
 
-        <!-- Main Content -->
-        <div class="content">
-            <!-- Section 1: What You've Joined -->
-            <div class="section">
-                <h2>You've Entered an Exclusive Community</h2>
-                <p>You're now among discerning individuals who demand more. Here's what Circle membership means:</p>
+        <table role="presentation" class="container" cellspacing="0" cellpadding="0" border="0" width="600" style="width:600px; max-width:600px; background-color:#FAF7F2;">
 
-                <div class="benefits">
-                    <ul>
-                        <li>Early access to N'ICE products before official launch</li>
-                        <li>Exclusive flavors and limited editions</li>
-                        <li>Community of like-minded individuals</li>
-                        <li>Your chance at something extraordinary</li>
-                    </ul>
-                </div>
-            </div>
+          <!-- ====================================================
+               HERO: Welcome, {{firstName}} — SVG pouch background
+               Dark purple with N1CE pouch tin flowing in the bg.
+               ==================================================== -->
+          <!--[if gte mso 9]>
+          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px; height:560px;">
+            <v:fill type="frame" src="/images/welcome-header-bg.svg" color="#7D1060" />
+            <v:textbox inset="0,0,0,0">
+          <![endif]-->
+          <tr>
+            <td class="header-pad"
+                background="/images/welcome-header-bg.svg"
+                bgcolor="#7D1060"
+                valign="middle"
+                align="left"
+                style="background-color:#7D1060; background-image:url('/images/welcome-header-bg.svg'); background-size:cover; background-position:center top; background-repeat:no-repeat; padding:80px 48px 90px;">
 
-            <!-- Section 2: The Prize -->
-            <div class="section">
-                <div class="prize-section">
-                    <h3>Meet Justin Gaethje</h3>
-                    <p><strong>Two Circle members will be randomly selected to meet the fighter at UFC Freedom 250.</strong></p>
-                    <p>You're in the draw simply by joining.</p>
-                    <p class="odds">Your odds: 1 in X members</p>
-                </div>
-            </div>
+              <!-- Actual N1CE logo (white version) -->
+              <img src="/images/n1ce-logo-white.png" width="140" alt="N1CE" class="logo-img" style="display:block; width:140px; max-width:140px; margin:0 0 40px 0; opacity:0.95;"/>
 
-            <!-- Section 3: What's Next -->
-            <div class="section">
-                <h2>Here's Your Journey</h2>
+              <!-- Small accent line -->
+              <p class="accent" style="margin:0 0 16px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.35em; text-transform:uppercase; color:#FFDD00; font-weight:700;">Circle / You're In</p>
 
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker">Next</div>
-                        <div class="timeline-content">
-                            <p><strong>Personalized AI Video</strong><br>You'll receive an AI-personalized video from Justin Gaethje mentioning your name</p>
-                        </div>
-                    </div>
+              <!-- Main hero headline -->
+              <h1 class="heading h1" style="margin:0 0 22px; font-family:'Anton','Arial Black',sans-serif; font-size:72px; line-height:0.92; letter-spacing:-0.02em; color:#FFFFFF; text-transform:uppercase; text-shadow:0 4px 24px rgba(0,0,0,0.55);">Welcome,<br/><span style="color:#F085C6;">{{firstName}}<span style="color:#FF5600;">.</span></span></h1>
 
-                    <div class="timeline-item">
-                        <div class="timeline-marker">June 14</div>
-                        <div class="timeline-content">
-                            <p><strong>Product Launches</strong><br>Get early access, exclusive pricing, and first pick of new flavors</p>
-                        </div>
-                    </div>
+              <!-- Body copy over hero -->
+              <p class="body-font" style="margin:0; font-family:'JetBrains Mono','Courier New',monospace; font-size:14px; color:#FAF7F2; line-height:1.7; max-width:380px; text-shadow:0 2px 10px rgba(0,0,0,0.5);">Thanks for joining the N1CE Circle.</p>
+            </td>
+          </tr>
+          <!--[if gte mso 9]>
+            </v:textbox>
+          </v:rect>
+          <![endif]-->
 
-                    <div class="timeline-item">
-                        <div class="timeline-marker">Ongoing</div>
-                        <div class="timeline-content">
-                            <p><strong>Weekly Updates</strong><br>New flavors, fighter stories, exclusive deals, and community news delivered to your inbox</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <!-- ====================================================
+               SMOOTH GRADIENT TRANSITION: dark purple → cream
+               No rainbow bar. Just a clean fade.
+               ==================================================== -->
+          <tr>
+            <td style="height:60px; line-height:60px; font-size:0; background:linear-gradient(180deg, #2A0428 0%, #5A1048 25%, #9B4880 55%, #DFC0D5 80%, #FAF7F2 100%);">&nbsp;</td>
+          </tr>
 
-            <!-- CTA Section -->
-            <div class="cta-section">
-                <p style="margin-bottom: 20px; font-weight: 600;">Ready to get started?</p>
-                <a href="https://n1ce.com/circle/dashboard" class="cta-button cta-primary">View Your Referral Link</a>
-                <a href="https://n1ce.com/flavors" class="cta-button cta-secondary">Explore Flavors</a>
-            </div>
+          <!-- ====================================================
+               A MESSAGE FOR YOU / FROM JUSTIN — video section
+               Clean cream background. Minimal accents.
+               ==================================================== -->
+          <tr>
+            <td class="padding" style="background-color:#FAF7F2; padding:40px 48px 36px;">
+              <p class="accent" style="margin:0 0 14px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.3em; color:#FF5600; text-transform:uppercase; font-weight:700;">A message for you</p>
+              <h2 class="heading" style="margin:0 0 28px; font-family:'Anton','Arial Black',sans-serif; font-size:46px; line-height:1; color:#0A0A0A; text-transform:uppercase; letter-spacing:-0.01em;">From <span style="color:#E2003F;">Justin.</span></h2>
 
-            <!-- Social Links -->
-            <div class="social-links">
-                <a href="https://instagram.com/nice" title="Instagram">📷</a>
-                <a href="https://tiktok.com/@nice" title="TikTok">🎵</a>
-                <a href="https://twitter.com/nice" title="Twitter">𝕏</a>
-            </div>
+              <!-- Video card (single-color orange border, no rainbow) -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="padding:3px; background-color:#FF5600;">
+                    <a href="{{videoUrl}}" style="text-decoration:none; color:inherit;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#0A0A0A;">
+                        <tr>
+                          <td class="video-frame" align="center" valign="middle" height="300" style="height:300px; background-color:#0A0A0A; background-image:url('{{videoThumbnailUrl}}'); background-size:cover; background-position:center;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                              <tr>
+                                <td class="play-icon" align="center" valign="middle" width="80" height="80" style="width:80px; height:80px; background-color:#FF5600; border-radius:50%; border:3px solid #FFFFFF;">
+                                  <span style="font-family:'Arial',sans-serif; font-size:32px; color:#FFFFFF; line-height:1; padding-left:6px;">&#9654;</span>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color:#0A0A0A; padding:14px 18px;" align="left">
+                            <span class="accent" style="font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.25em; color:#FFDD00; text-transform:uppercase;">&#9654; Personalized for {{firstName}} / Tap to play</span>
+                          </td>
+                        </tr>
+                      </table>
+                    </a>
+                  </td>
+                </tr>
+              </table>
 
-            <div class="divider"></div>
+            </td>
+          </tr>
 
-            <!-- Closing -->
-            <p style="text-align: center; font-size: 14px; color: #666; margin-top: 30px;">
-                Welcome to the Circle. <strong style="color: #1FA894;">Far from Ordinary.</strong>
-            </p>
-        </div>
+          <!-- ====================================================
+               SMOOTH GRADIENT TRANSITION: cream → dark purple
+               Leading into the referral section.
+               ==================================================== -->
+          <tr>
+            <td style="height:60px; line-height:60px; font-size:0; background:linear-gradient(180deg, #FAF7F2 0%, #DFC0D5 25%, #9B4880 55%, #5A1048 85%, #2A0428 100%);">&nbsp;</td>
+          </tr>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p><strong>N'ICE Circle</strong></p>
-            <p>High-quality smoke-free nicotine experience from Sweden</p>
-            <p>
-                <a href="https://n1ce.com">Visit Website</a> |
-                <a href="https://n1ce.com/support">Support</a> |
-                <a href="https://n1ce.com/privacy">Privacy Policy</a>
-            </p>
-            <p style="margin-top: 20px; font-size: 11px;">
-                You're receiving this email because you signed up for N'ICE Circle.<br>
-                <a href="#">Unsubscribe</a> | <a href="#">Update Preferences</a>
-            </p>
-            <p style="margin-top: 15px; font-size: 11px; color: #666;">
-                © 2026 N'ICE. All rights reserved. | support@nicepouches.com
-            </p>
-        </div>
-    </div>
+          <!-- ====================================================
+               REFERRAL: Bring a Friend — dark purple themed
+               Cohesive with hero, no rainbow bars.
+               ==================================================== -->
+          <tr>
+            <td class="padding" valign="middle" style="background-color:#2A0428; background:linear-gradient(160deg, #2A0428 0%, #7D1060 55%, #A02080 100%); padding:48px 48px 56px;">
+
+              <p class="accent" style="margin:0 0 14px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.3em; color:#FFDD00; text-transform:uppercase; font-weight:700;">Your Member Link</p>
+
+              <h2 class="heading" style="margin:0 0 18px; font-family:'Anton','Arial Black',sans-serif; font-size:52px; line-height:0.95; color:#FFFFFF; text-transform:uppercase; letter-spacing:-0.02em;">Bring a<br/><span style="color:#F085C6;">friend.</span></h2>
+
+              <p class="body-font" style="margin:0 0 28px; font-family:'JetBrains Mono','Courier New',monospace; font-size:14px; color:#FAF7F2; line-height:1.65; max-width:440px; opacity:0.88;">Share your link. Anyone who joins through it goes into the draw too.</p>
+
+              <!-- Link card (no rainbow top, just clean dark block with orange left-border) -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="background-color:#0A0A0A; border-left:4px solid #FF5600; padding:22px 24px;" align="left">
+                    <p class="accent" style="margin:0 0 10px; font-family:'Oswald','Arial',sans-serif; font-size:10px; letter-spacing:0.3em; color:#FFDD00; text-transform:uppercase; font-weight:700;">Your link</p>
+                    <div class="body-font" style="font-family:'JetBrains Mono','Courier New',monospace; font-size:15px; color:#FFFFFF; word-break:break-all; font-weight:700;">n1ce.com/r/{{referralCode}}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- CTA Button — solid orange, confident, no rainbow -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:24px;">
+                <tr>
+                  <td style="background-color:#FF5600;" align="center">
+                    <a href="https://n1ce.com/r/{{referralCode}}" style="display:inline-block; padding:16px 36px; font-family:'Anton','Arial Black',sans-serif; font-size:17px; letter-spacing:0.1em; color:#FFFFFF; text-decoration:none; text-transform:uppercase; font-weight:700;">Share My Link &rarr;</a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- ====================================================
+               FOOTER — clean black with white logo
+               ==================================================== -->
+          <tr>
+            <td style="background-color:#0A0A0A; padding:36px 32px;" align="center">
+              <img src="/images/n1ce-logo-white.png" width="80" alt="N1CE" style="display:block; width:80px; max-width:80px; margin:0 auto 18px auto; opacity:0.95;"/>
+              <p class="accent" style="margin:0 0 14px; font-family:'Oswald','Arial',sans-serif; font-size:11px; letter-spacing:0.2em; color:#FAF7F2; text-transform:uppercase;">
+                <a href="#" style="color:#F085C6; text-decoration:none; margin:0 10px;">Instagram</a>
+                <span style="color:rgba(255,255,255,0.3);">·</span>
+                <a href="#" style="color:#FF5600; text-decoration:none; margin:0 10px;">TikTok</a>
+                <span style="color:rgba(255,255,255,0.3);">·</span>
+                <a href="#" style="color:#FFDD00; text-decoration:none; margin:0 10px;">Contact</a>
+              </p>
+              <p class="body-font" style="margin:0 0 8px; font-family:'JetBrains Mono','Courier New',monospace; font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.05em;">N1CE / Stockholm, Sweden</p>
+              <p class="body-font" style="margin:0; font-family:'JetBrains Mono','Courier New',monospace; font-size:10px; color:rgba(255,255,255,0.35); letter-spacing:0.05em;">&copy; 2026 N1CE &middot; <a href="#" style="color:rgba(255,255,255,0.55); text-decoration:underline;">Unsubscribe</a> &middot; Must be 21+</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Preview-only enhancement (Netlify-compatible): reads ?name=X,
+       replaces {{firstName}} + resolves video merge tags + injects inline player
+       while preserving the outer border + caption row. Email clients strip
+       <script>, so this only runs in browser previews. -->
+  <script>
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var name = (qs.get('name') || '').trim();
+
+    function replaceInTextNodes(token, replacement) {
+      var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      var matches = [], n;
+      while (n = walker.nextNode()) { if (n.nodeValue.indexOf(token) !== -1) matches.push(n); }
+      matches.forEach(function(m){ m.nodeValue = m.nodeValue.split(token).join(replacement); });
+    }
+
+    var VIDEO_URL = '/videos/message-for-you.mp4';
+    document.querySelectorAll('[href],[src]').forEach(function(el){
+      ['href','src'].forEach(function(attr){
+        var v = el.getAttribute(attr);
+        if (v && v.indexOf('{{videoUrl}}') !== -1) {
+          el.setAttribute(attr, v.replace(/\{\{videoUrl\}\}/g, VIDEO_URL));
+        }
+      });
+    });
+    document.querySelectorAll('[style]').forEach(function(el){
+      var s = el.getAttribute('style');
+      if (s && s.indexOf('{{videoThumbnailUrl}}') !== -1) {
+        el.setAttribute('style', s.replace(/\{\{videoThumbnailUrl\}\}/g, ''));
+      }
+    });
+
+    if (name) replaceInTextNodes('{{firstName}}', name);
+
+    // Swap the thumbnail cell with <video>, keeping outer border + caption row
+    document.querySelectorAll('a[href*="/videos/"]').forEach(function(a){
+      var videoSrc = a.getAttribute('href');
+      var frameCell = a.querySelector('.video-frame') || a.querySelector('td');
+      if (frameCell) {
+        frameCell.innerHTML = '';
+        frameCell.style.backgroundImage = 'none';
+        frameCell.style.padding = '0';
+        if (!frameCell.getAttribute('height')) frameCell.setAttribute('height', '300');
+        frameCell.style.height = '300px';
+
+        var video = document.createElement('video');
+        video.src = videoSrc;
+        video.controls = true; video.preload = 'metadata'; video.playsInline = true;
+        video.setAttribute('width', '100%');
+        video.setAttribute('height', '300');
+        video.style.cssText = 'width:100%;height:300px;display:block;background:#0A0A0A;object-fit:contain;';
+        frameCell.appendChild(video);
+      }
+      while (a.firstChild) a.parentNode.insertBefore(a.firstChild, a);
+      if (a.parentNode) a.parentNode.removeChild(a);
+    });
+  })();
+  </script>
 </body>
 </html>

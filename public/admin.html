@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N1CE Circle — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #27BC76;
+      --pink: #F085C6;
+      --orange: #FF5600;
+      --red: #E2003F;
+      --dark: #002419;
+      --black: #0A0A0A;
+      --cream: #FAF7F2;
+      --white: #FFFFFF;
+      --gray: #1A1A1A;
+      --border: rgba(255,255,255,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .nav {
+      background: var(--black);
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.05em;
+    }
+    .nav-logo .accent { color: var(--orange); }
+    .nav-tag {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.2em;
+      font-size: 12px;
+      color: var(--orange);
+      text-transform: uppercase;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .header h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: 56px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .header h1 .accent { color: var(--orange); }
+
+    .refresh-btn {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--border);
+      padding: 12px 20px;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .refresh-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 700px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    .stat-card {
+      background: var(--gray);
+      padding: 28px 24px;
+      border-left: 4px solid var(--orange);
+    }
+    .stat-card:nth-child(2) { border-left-color: var(--green); }
+    .stat-card:nth-child(3) { border-left-color: var(--pink); }
+
+    .stat-label {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 12px;
+    }
+
+    .stat-value {
+      font-family: 'Anton', sans-serif;
+      font-size: 56px;
+      line-height: 1;
+    }
+
+    .lottery-section {
+      background: var(--gray);
+      padding: 40px;
+      margin-bottom: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 32px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .section-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.25em;
+      font-size: 11px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .lottery-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr 100px auto;
+      gap: 16px;
+      align-items: end;
+      margin-top: 24px;
+    }
+    @media (max-width: 700px) {
+      .lottery-form { grid-template-columns: 1fr; }
+    }
+
+    .field label {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .field input {
+      width: 100%;
+      background: var(--black);
+      border: 1px solid var(--border);
+      padding: 14px;
+      color: var(--white);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      outline: none;
+    }
+    .field input:focus { border-color: var(--orange); }
+
+    .lottery-btn {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      padding: 16px 32px;
+      font-family: 'Anton', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .lottery-btn:hover { background: var(--red); }
+    .lottery-btn:disabled { background: #555; cursor: not-allowed; }
+
+    .winners-display {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--green);
+      color: var(--black);
+      display: none;
+    }
+    .winners-display.active { display: block; }
+    .winners-display h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 24px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .winner-row {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      font-size: 14px;
+    }
+    .winner-row:last-child { border-bottom: none; }
+    .winner-row strong { font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; }
+
+    .table-section {
+      background: var(--gray);
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 13px;
+    }
+
+    .data-table thead {
+      background: var(--black);
+    }
+
+    .data-table th {
+      padding: 14px;
+      text-align: left;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--orange);
+      border-bottom: 2px solid var(--orange);
+    }
+
+    .data-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .badge-winner { background: var(--green); color: var(--black); }
+    .badge-pending { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
+
+    .empty {
+      padding: 48px;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 14px;
+    }
+
+    .status-msg {
+      margin-top: 16px;
+      padding: 12px 16px;
+      font-size: 13px;
+      display: none;
+    }
+    .status-msg.error { display: block; background: var(--red); color: var(--white); }
+    .status-msg.info { display: block; background: var(--black); color: var(--orange); border: 1px solid var(--orange); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav-logo">N1CE <span class="accent">/ ADMIN</span></span>
+    <span class="nav-tag">CIRCLE CONTROL PANEL</span>
+  </nav>
+
+  <div class="container">
+    <div class="header">
+      <h1>The <span class="accent">Circle.</span></h1>
+      <button class="refresh-btn" id="refreshBtn">↻ Refresh Data</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Signups</div>
+        <div class="stat-value" id="statSignups">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Referrals</div>
+        <div class="stat-value" id="statReferrals">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Winners</div>
+        <div class="stat-value" id="statWinners">—</div>
+      </div>
+    </div>
+
+    <div class="lottery-section">
+      <div class="section-eyebrow">/ Run Draw</div>
+      <h2 class="section-title">Select Winners.</h2>
+      <p style="color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 8px;">Random Fisher-Yates shuffle on all signups in date range. Selects N winners. Triggers winner notification email to each.</p>
+
+      <form class="lottery-form" id="lotteryForm">
+        <div class="field">
+          <label for="poolStart">Pool Start Date</label>
+          <input type="date" id="poolStart" value="2026-05-14" required />
+        </div>
+        <div class="field">
+          <label for="poolEnd">Pool End Date</label>
+          <input type="date" id="poolEnd" value="2026-06-14" required />
+        </div>
+        <div class="field">
+          <label for="winnerCount"># Winners</label>
+          <input type="number" id="winnerCount" value="2" min="1" max="100" required />
+        </div>
+        <button type="submit" class="lottery-btn" id="lotteryBtn">Run Lottery →</button>
+      </form>
+
+      <div class="status-msg" id="lotteryStatus"></div>
+
+      <div class="winners-display" id="winnersDisplay">
+        <h3>Winners Selected</h3>
+        <div id="winnersList"></div>
+      </div>
+    </div>
+
+    <div class="table-section">
+      <div class="section-eyebrow">/ All Members</div>
+      <h2 class="section-title">Signup Log.</h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Member ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Referrals</th>
+            <th>Status</th>
+            <th>Signup Date</th>
+          </tr>
+        </thead>
+        <tbody id="membersTable">
+          <tr><td colspan="6" class="empty">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const API = ''; // Same origin
+
+    async function loadStats() {
+      try {
+        const res = await fetch(API + '/api/circle/stats');
+        const data = await res.json();
+        document.getElementById('statSignups').textContent = data.totalSignups || 0;
+        document.getElementById('statReferrals').textContent = data.totalReferrals || 0;
+        document.getElementById('statWinners').textContent = (data.currentWinners || []).length;
+      } catch (e) {
+        console.error('Stats load failed', e);
+      }
+    }
+
+    async function loadMembers() {
+      try {
+        const res = await fetch(API + '/api/circle/members');
+        if (!res.ok) {
+          // Endpoint may not exist yet — show placeholder
+          document.getElementById('membersTable').innerHTML = '<tr><td colspan="6" class="empty">No members yet. Sign up at /signup.html to populate.</td></tr>';
+          return;
+        }
+        const data = await res.json();
+        const members = data.members || [];
+
+        if (members.length === 0) {
+          document.getElementById('membersTable').innerHTML = '<tr><td colspan="6" class="empty">No members yet. Sign up at /signup.html to populate.</td></tr>';
+          return;
+        }
+
+        const rows = members.map(m => {
+          const badge = m.is_winner
+            ? '<span class="badge badge-winner">WINNER</span>'
+            : '<span class="badge badge-pending">PENDING</span>';
+
+          const date = new Date(m.signup_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+          return `<tr>
+            <td>${m.member_id}</td>
+            <td>${m.first_name}</td>
+            <td>${m.email}</td>
+            <td>${m.referral_count}</td>
+            <td>${badge}</td>
+            <td>${date}</td>
+          </tr>`;
+        }).join('');
+
+        document.getElementById('membersTable').innerHTML = rows;
+      } catch (e) {
+        console.error('Members load failed', e);
+        document.getElementById('membersTable').innerHTML = '<tr><td colspan="6" class="empty">Backend offline. Start the server with `npm run dev`.</td></tr>';
+      }
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      loadStats();
+      loadMembers();
+    });
+
+    document.getElementById('lotteryForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('lotteryBtn');
+      const status = document.getElementById('lotteryStatus');
+      const display = document.getElementById('winnersDisplay');
+
+      const winnerCount = parseInt(document.getElementById('winnerCount').value, 10) || 2;
+      if (!confirm(`Run lottery? This will randomly select ${winnerCount} winner(s) and mark them in the database.`)) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Running...';
+      status.className = 'status-msg';
+      display.classList.remove('active');
+
+      try {
+        const res = await fetch(API + '/api/circle/select-winners', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            poolStartDate: document.getElementById('poolStart').value,
+            poolEndDate: document.getElementById('poolEnd').value,
+            count: winnerCount
+          })
+        });
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          const winnersHtml = result.winners.map(w =>
+            `<div class="winner-row"><strong>${w.firstName}</strong> · ${w.email} · ${w.memberId}</div>`
+          ).join('');
+          document.getElementById('winnersList').innerHTML = winnersHtml +
+            `<div class="winner-row" style="margin-top: 12px; opacity: 0.6;">Pool size: ${result.totalPoolSize} · Draw ID: ${result.drawId}</div>`;
+          display.classList.add('active');
+          loadStats();
+          loadMembers();
+        } else {
+          status.className = 'status-msg error';
+          status.textContent = result.message || 'Lottery failed.';
+        }
+      } catch (err) {
+        status.className = 'status-msg error';
+        status.textContent = 'Network error. Is the server running?';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Run Lottery →';
+      }
+    });
+
+    loadStats();
+    loadMembers();
+  </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N1CE Circle · Email Variants Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0A0A0A; color: #FAF7F2; font-family: 'Oswald', Arial, sans-serif; min-height: 100vh; }
+    .header { padding: 48px 32px 24px; max-width: 1600px; margin: 0 auto; }
+    .kicker { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: #FFDD00; margin: 0 0 8px; font-weight: 700; }
+    .title { font-family: 'Anton', Arial Black, sans-serif; font-size: 72px; line-height: 0.95; margin: 0 0 16px; letter-spacing: -0.02em; }
+    .subtitle { font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.5; color: #FAF7F2; opacity: 0.72; max-width: 680px; margin: 0 0 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 24px; padding: 24px 32px 64px; max-width: 1600px; margin: 0 auto; }
+    .card { background: #1A0014; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; position: relative; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(var(--accent), 0.25); border-color: var(--accent); }
+    .card-chip { display: inline-block; color: #FFFFFF; font-family: 'Anton', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; position: absolute; top: 12px; left: 12px; z-index: 2; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    .card-frame { width: 100%; height: 640px; border: 0; background: #FAF7F2; display: block; }
+    .card-actions { display: flex; gap: 8px; padding: 14px; background: #0A0A0A; border-top: 1px solid rgba(255,255,255,0.08); }
+    .card-btn { flex: 1; text-align: center; padding: 10px 16px; border-radius: 6px; background: var(--accent); color: #FFFFFF; text-decoration: none; font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.15s; }
+    .card-btn:hover { background: var(--accent-light); }
+    .card-btn.secondary { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #FAF7F2; }
+    .card-btn.secondary:hover { background: rgba(255,255,255,0.08); }
+
+    /* Gmail-mock dropdown */
+    .gmail-dropdown { position: relative; flex: 1; }
+    .gmail-dropdown .gmail-btn { width: 100%; cursor: pointer; font-family: inherit; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .gmail-menu {
+      position: absolute; bottom: calc(100% + 6px); left: 0; right: 0;
+      background: #1A0014; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+      padding: 6px; box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+      display: none; flex-direction: column; z-index: 10;
+    }
+    .gmail-dropdown.open .gmail-menu { display: flex; }
+    .gmail-menu-item {
+      display: block; padding: 10px 14px; color: #FAF7F2; text-decoration: none;
+      border-radius: 6px; font-family: 'Anton', sans-serif; font-size: 14px;
+      letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.12s;
+    }
+    .gmail-menu-item:hover { background: var(--accent); color: #FFFFFF; }
+    .gmail-menu-item.subtle { color: rgba(255,255,255,0.6); font-size: 12px; letter-spacing: 0.1em; }
+    .gmail-menu-item.subtle:hover { background: rgba(255,255,255,0.08); color: #FFFFFF; }
+    .gmail-menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 8px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <p class="kicker">N1CE Circle · Email Variants</p>
+    <h1 class="title">8 Flavour<br/>Welcome Variants.</h1>
+    <p class="subtitle">Each variant inherits the same hero layout (pouch on the right, PS3-style flowing ribbons, typography system) but drops a different N1CE flavour into the banner with a matching colour palette through the whole email.</p>
+    <p class="subtitle">Click any card to open the full email preview.</p>
+  </div>
+  <div class="grid">
+    <div class="card" style="--accent:#8C1470; --accent-light:#D040A8;">
+      <div class="card-chip" style="background:#8C1470;">Purple Punch</div>
+      <iframe src="/emails/welcome-email.html" class="card-frame" title="Purple Punch preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/welcome-email.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-berry.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-berry.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-berry.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-berry.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-berry.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card" style="--accent:#FF7550; --accent-light:#FFAE8A;">
+      <div class="card-chip" style="background:#FF7550;">Peach Flame</div>
+      <iframe src="/emails/variants/welcome-peach.html" class="card-frame" title="Peach Flame preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/variants/welcome-peach.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-peach.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-peach.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-peach.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-peach.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-peach.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card" style="--accent:#4D9A3F; --accent-light:#8BC878;">
+      <div class="card-chip" style="background:#4D9A3F;">Wintergreen Malla</div>
+      <iframe src="/emails/variants/welcome-wintergreen.html" class="card-frame" title="Wintergreen Malla preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/variants/welcome-wintergreen.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-wintergreen.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-wintergreen.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-wintergreen.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-wintergreen.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-wintergreen.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card" style="--accent:#E05030; --accent-light:#FF9070;">
+      <div class="card-chip" style="background:#E05030;">Melon Blaze</div>
+      <iframe src="/emails/variants/welcome-melon.html" class="card-frame" title="Melon Blaze preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/variants/welcome-melon.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-melon.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-melon.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-melon.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-melon.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-melon.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card" style="--accent:#FFA41F; --accent-light:#FFD070;">
+      <div class="card-chip" style="background:#FFA41F;">Mango Rush</div>
+      <iframe src="/emails/variants/welcome-mango.html" class="card-frame" title="Mango Rush preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/variants/welcome-mango.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mango.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mango.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mango.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mango.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-mango.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card" style="--accent:#1D9E6F; --accent-light:#4DD5A0;">
+      <div class="card-chip" style="background:#1D9E6F;">Jalapeño Glow</div>
+      <iframe src="/emails/variants/welcome-mint.html" class="card-frame" title="Jalapeño Glow preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/variants/welcome-mint.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mint.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mint.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mint.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-mint.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-mint.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card" style="--accent:#8C6850; --accent-light:#C8A485;">
+      <div class="card-chip" style="background:#8C6850;">Smooth Cappuccino</div>
+      <iframe src="/emails/variants/welcome-cafe.html" class="card-frame" title="Smooth Cappuccino preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/variants/welcome-cafe.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-cafe.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-cafe.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-cafe.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-cafe.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-cafe.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card" style="--accent:#1E8FF0; --accent-light:#6FC0FF;">
+      <div class="card-chip" style="background:#1E8FF0;">Mint Freeze</div>
+      <iframe src="/emails/variants/welcome-blue.html" class="card-frame" title="Mint Freeze preview" loading="lazy"></iframe>
+      <div class="card-actions">
+        <a class="card-btn" href="/emails/variants/welcome-blue.html" target="_blank">Open email</a>
+        <div class="gmail-dropdown">
+          <button class="card-btn secondary gmail-btn" type="button" onclick="toggleDropdown(event, this)">Gmail mock ▾</button>
+          <div class="gmail-menu" role="menu">
+            <a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-blue.html?name=Minou" target="_blank">Minou</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-blue.html?name=Stefan" target="_blank">Stefan</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-blue.html?name=Durim" target="_blank">Durim</a><a class="gmail-menu-item" href="/emails/mocks/gmail-welcome-blue.html?name=Micheal" target="_blank">Micheal</a>
+            <div class="gmail-menu-divider"></div>
+            <a class="gmail-menu-item subtle" href="/emails/mocks/gmail-welcome-blue.html" target="_blank">No name (default)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Close any open dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      document.querySelectorAll('.gmail-dropdown.open').forEach(function(dd) {
+        if (!dd.contains(e.target)) dd.classList.remove('open');
+      });
+    });
+    function toggleDropdown(event, btn) {
+      event.stopPropagation();
+      var dd = btn.closest('.gmail-dropdown');
+      // Close all other dropdowns first
+      document.querySelectorAll('.gmail-dropdown.open').forEach(function(other) {
+        if (other !== dd) other.classList.remove('open');
+      });
+      dd.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

@@ -107,18 +107,17 @@ Create a signup via referral link (friend was referred).
 
 **Actions on Success:**
 1. New member record created with `referred_by` = referrer ID
-2. Referrer's `referral_count` incremented
+2. Referrer's `referral_count` incremented (tracking only; no email is sent to the referrer)
 3. New member's welcome email triggered
-4. **If referrer now has 2+ referrals:**
-   - Referrer marked as "unlocked meet & greet draw"
-   - "You unlocked the draw!" email triggered to referrer
+
+> Every Circle member is automatically eligible for the meet & greet draw on signup. There is no referral threshold required to qualify.
 
 ---
 
 ## Lottery Endpoints
 
 ### POST /api/circle/select-winners
-Run random lottery draw to select 2 winners.
+Run random lottery draw to select N winners (default 2; configurable per draw).
 
 **Algorithm:** Fisher-Yates shuffle (unbiased random selection)
 
@@ -199,8 +198,11 @@ Get system statistics and draw history.
       "draw_id": "DRAW-1718000000000-ABC123",
       "draw_date": "2026-06-14T20:00:00.000Z",
       "total_pool_size": 450,
-      "winner1_email": "john@example.com",
-      "winner2_email": "jane@example.com"
+      "winner_count": 2,
+      "winners": [
+        { "email": "john@example.com", "first_name": "John", "member_id": "NICE-abc123" },
+        { "email": "jane@example.com", "first_name": "Jane", "member_id": "NICE-def456" }
+      ]
     }
   ]
 }
@@ -372,7 +374,7 @@ PUT /v1/lists/{list_id}/members
 4. Bob signs up via John's link:
    POST /api/circle/referral-signup
    → john's referral_count: 2
-   → john's "unlocked meet & greet" email triggered
+   → bob's welcome email triggered (no separate email to John)
 
 5. On June 14, run lottery:
    POST /api/circle/select-winners

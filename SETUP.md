@@ -200,8 +200,8 @@ psql -U postgres -h localhost nice_circle
 # View all signups
 SELECT member_id, email, referral_count, is_winner FROM circle_signups;
 
-# View draw history
-SELECT draw_id, draw_date, winner1_email, winner2_email FROM winner_draw_log;
+# View draw history (winners is a JSONB array of N winners)
+SELECT draw_id, draw_date, winner_count, winners FROM winner_draw_log;
 
 # Exit
 \q

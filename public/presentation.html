@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>N1CE Circle · Automated Welcome System</title>
+  <meta name="description" content="When a customer signs up on your Shopify store, they receive a personalised, flavour-matched welcome email — in under 2 seconds. Automated, branded, effortless." />
+
+  <!-- Open Graph (Facebook, LinkedIn, iMessage, WhatsApp, Slack) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="N1CE Circle · Automated Welcome System" />
+  <meta property="og:description" content="Shopify signup → personalised welcome email → customer inbox. In under 2 seconds. Fully automated." />
+  <meta property="og:image" content="/images/banners/banner-melon.svg" />
+  <meta property="og:image:alt" content="N1CE Circle welcome email preview" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="N1CE Circle · Automated Welcome System" />
+  <meta name="twitter:description" content="From Shopify signup to inbox in 2 seconds — flavour-matched, personalised, automated." />
+  <meta name="twitter:image" content="/images/banners/banner-melon.svg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/n1ce-logo-white.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --berry:  #8C1470;
+      --peach:  #FF7550;
+      --green:  #4D9A3F;
+      --melon:  #E05030;
+      --mango:  #FFA41F;
+      --mint:   #1D9E6F;
+      --cafe:   #8C6850;
+      --blue:   #1E8FF0;
+      --hot:    #FF5600;
+      --pink:   #F085C6;
+      --yellow: #FFDD00;
+      --cream:  #FAF7F2;
+      --bg-1:   #0A0A0A;
+      --bg-2:   #1A0014;
+      --bg-3:   #200018;
+      --text:   #FAF7F2;
+      --muted:  rgba(250, 247, 242, 0.62);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: radial-gradient(ellipse at top, #2A0828 0%, var(--bg-1) 55%, #000 100%);
+      color: var(--text);
+      font-family: 'Oswald', Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 122, 199, 0.10) 0%, transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(30, 143, 240, 0.08) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+    /* ─── HERO ──────────────────────────────────────────── */
+    header.hero {
+      padding: 56px 0 32px;
+      text-align: center;
+      position: relative;
+    }
+    .brand-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 16px;
+      background: rgba(255, 86, 0, 0.12);
+      border: 1px solid rgba(255, 86, 0, 0.3);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+      animation: fadeDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .brand-chip .dot {
+      width: 6px; height: 6px; background: var(--hot);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 86, 0, 0.6); }
+      50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(255, 86, 0, 0); }
+    }
+    h1.title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 9vw, 128px);
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--pink) 45%, var(--hot) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+    h1.title .accent { color: var(--hot); -webkit-text-fill-color: var(--hot); }
+    .subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+    }
+
+    /* ─── SECTION HEADERS ───────────────────────────────── */
+    .section { padding: 72px 0; position: relative; }
+    .section-kicker {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 16px;
+      font-size: 11px; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--yellow);
+      font-weight: 700;
+    }
+    .section-kicker .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: var(--hot); color: #fff;
+      border-radius: 50%;
+      font-family: 'Anton', sans-serif; font-size: 16px;
+      letter-spacing: 0;
+    }
+    .section-kicker .line { flex: 1; height: 1px; background: rgba(255, 86, 0, 0.25); }
+    h2.section-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h2.section-title .tint { color: var(--pink); }
+    .section-intro {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 40px;
+    }
+
+    /* ─── EMAIL PREVIEW BLOCK ───────────────────────────── */
+    .email-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 640px);
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 1000px) {
+      .email-showcase { grid-template-columns: 1fr; }
+    }
+    .showcase-copy h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 42px; text-transform: uppercase;
+      line-height: 0.95; letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .showcase-copy p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px; line-height: 1.65;
+      color: var(--muted); margin-bottom: 24px;
+    }
+
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-family: 'Oswald', sans-serif; font-size: 14px;
+      color: var(--text); letter-spacing: 0.02em;
+    }
+    .feature-list li .check {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      background: var(--hot); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      box-shadow: 0 2px 8px rgba(255, 86, 0, 0.4);
+    }
+
+    /* Interactive controls */
+    .controls {
+      display: flex; flex-direction: column; gap: 14px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;          /* belt-and-braces — never let kids escape */
+    }
+    .control-row {
+      display: flex; align-items: center; gap: 14px;
+      width: 100%;
+      min-width: 0;              /* ESSENTIAL — lets flex children shrink below content size */
+    }
+    .control-row label {
+      font-size: 10px; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--yellow);
+      font-weight: 700; width: 80px; flex-shrink: 0;
+    }
+    .control-row input, .control-row select {
+      flex: 1 1 0;               /* flex-basis 0 so they actually shrink */
+      min-width: 0;              /* allow shrinking below intrinsic content width */
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .control-row input:focus, .control-row select:focus {
+      border-color: var(--hot);
+      box-shadow: 0 0 0 3px rgba(255, 86, 0, 0.2);
+    }
+    .control-row select {
+      appearance: none; -webkit-appearance: none; -moz-appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'><path fill='%23FF5600' d='M3 5l4 4 4-4z'/></svg>");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px;
+      text-overflow: ellipsis;
+    }
+    .control-row select option { background: #1A0014; color: var(--text); }
+
+    /* Email preview card */
+    .email-frame {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+    }
+    .email-frame:hover { transform: translateY(-4px); }
+    .email-frame.loading {
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 0 0 2px var(--hot);
+    }
+    .email-frame.loading::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--hot), var(--yellow), var(--hot), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 1s linear infinite;
+      z-index: 5;
+    }
+    @keyframes shimmer {
+      0% { background-position: -100% 0; }
+      100% { background-position: 100% 0; }
+    }
+    .email-frame .gmail-bar {
+      background: #f6f8fc;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e8eaed;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .email-frame .gmail-bar .dots { display: flex; gap: 5px; }
+    .email-frame .gmail-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .email-frame .gmail-bar .dot:nth-child(1) { background: #ff5f57; }
+    .email-frame .gmail-bar .dot:nth-child(2) { background: #febc2e; }
+    .email-frame .gmail-bar .dot:nth-child(3) { background: #28c840; }
+    .email-frame .gmail-bar .url {
+      flex: 1; margin-left: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: #5f6368;
+    }
+    .email-frame iframe {
+      width: 100%; height: 820px;
+      border: 0;
+      background: #fff;
+      display: block;
+    }
+
+    /* ─── FLOW DIAGRAM ──────────────────────────────────── */
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      position: relative;
+      margin-top: 48px;
+    }
+    @media (max-width: 900px) {
+      .flow { grid-template-columns: 1fr; }
+      .flow-arrow { transform: rotate(90deg); margin: 0 auto; }
+    }
+    .flow-step {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 24px 20px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .flow-step:nth-child(1) { animation-delay: 0.1s; }
+    .flow-step:nth-child(3) { animation-delay: 0.25s; }
+    .flow-step:nth-child(5) { animation-delay: 0.4s; }
+    .flow-step:nth-child(7) { animation-delay: 0.55s; }
+    .flow-step:nth-child(9) { animation-delay: 0.7s; }
+    .flow-step:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 86, 0, 0.4);
+      box-shadow: 0 16px 40px rgba(255, 86, 0, 0.15);
+    }
+    .flow-step .step-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 11px;
+      color: var(--hot);
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+    .flow-step .step-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .flow-step h4 {
+      font-family: 'Anton', sans-serif;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .flow-step p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .flow-arrow {
+      align-self: center;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--hot);
+      font-size: 24px;
+      animation: flow 2.5s ease-in-out infinite;
+    }
+    @keyframes flow {
+      0%, 100% { transform: translateX(-4px); opacity: 0.4; }
+      50% { transform: translateX(4px); opacity: 1; }
+    }
+
+    /* ─── LIVE DEMO TRIGGER ─────────────────────────────── */
+    .demo-card {
+      background: linear-gradient(135deg, rgba(140, 20, 112, 0.2) 0%, rgba(255, 86, 0, 0.12) 100%);
+      border: 1px solid rgba(255, 86, 0, 0.3);
+      border-radius: 18px;
+      padding: 36px 32px;
+      margin-top: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-card::before {
+      content: "";
+      position: absolute;
+      top: -50%; right: -10%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255, 86, 0, 0.15) 0%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .demo-card h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .demo-card .desc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .demo-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 12px;
+      position: relative;
+    }
+    @media (max-width: 720px) {
+      .demo-form { grid-template-columns: 1fr; }
+    }
+    .demo-form input, .demo-form select {
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      outline: none;
+    }
+    .demo-form button {
+      padding: 14px 28px;
+      background: var(--hot);
+      border: 0;
+      border-radius: 10px;
+      color: #fff;
+      font-family: 'Anton', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 8px 24px rgba(255, 86, 0, 0.3);
+    }
+    .demo-form button:hover {
+      transform: translateY(-1px);
+      background: #FF7020;
+      box-shadow: 0 12px 32px rgba(255, 86, 0, 0.4);
+    }
+    .demo-form button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .demo-status {
+      margin-top: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      min-height: 20px;
+      transition: all 0.3s;
+    }
+    .demo-status.success { color: #4ade80; }
+    .demo-status.error { color: #ef4444; }
+    .demo-status.loading { color: var(--yellow); }
+
+    /* ─── STATS GRID ────────────────────────────────────── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat::after {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--hot), var(--yellow));
+    }
+    .stat .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .stat .value {
+      font-family: 'Anton', sans-serif;
+      font-size: 44px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .stat .value .unit { color: var(--hot); font-size: 28px; }
+    .stat .foot {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* ─── REQUIREMENTS LIST ─────────────────────────────── */
+    .reqs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+    @media (max-width: 900px) {
+      .reqs { grid-template-columns: 1fr; }
+    }
+    .req {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 4px solid var(--hot);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .req .req-kicker {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .req h4 {
+      font-family: 'Anton', sans-serif;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .req p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      padding: 48px 0 60px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 80px;
+    }
+    footer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ─── ANIMATION KEYFRAMES ─────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .fade-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+    /* Ribbon animation overlay */
+    .ribbons {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 520px;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .ribbon {
+      position: absolute;
+      width: 140%;
+      height: 80px;
+      left: -20%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 122, 199, 0.18) 50%, transparent 100%);
+      filter: blur(24px);
+      border-radius: 50%;
+      animation: ribbonFloat 18s linear infinite;
+    }
+    .ribbon.r2 {
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 86, 0, 0.14) 50%, transparent 100%);
+      top: 200px; animation-duration: 22s; animation-direction: reverse;
+    }
+    .ribbon.r3 {
+      background: linear-gradient(90deg, transparent 0%, rgba(208, 64, 168, 0.12) 50%, transparent 100%);
+      top: 380px; animation-duration: 16s;
+    }
+    @keyframes ribbonFloat {
+      0%, 100% { transform: translateX(-5%) translateY(0); }
+      50% { transform: translateX(5%) translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ribbon decoration in hero area -->
+  <div class="ribbons">
+    <div class="ribbon"></div>
+    <div class="ribbon r2"></div>
+    <div class="ribbon r3"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <header class="hero">
+      <div class="brand-chip"><span class="dot"></span>N1CE Circle · Automated Welcome System</div>
+      <h1 class="title">Sign-up<br/>to inbox<br/><span class="accent">in 2 seconds.</span></h1>
+      <p class="subtitle">
+        When a customer joins the Circle on your Shopify store, the system fires a webhook,
+        picks the matching flavour, and delivers a personalised welcome email — instantly,
+        automatically, without lifting a finger.
+      </p>
+    </header>
+
+    <!-- ═══════════════ SECTION 1: THE EMAIL ═══════════════ -->
+    <section class="section fade-on-scroll">
+      <div class="section-kicker"><span class="num">1</span> The Welcome Email <span class="line"></span></div>
+      <h2 class="section-title">What they see<br/>the moment they join<span class="tint">.</span></h2>
+      <p class="section-intro">
+        Same premium pouch shot. Same typography. Same gradients you approved. Personalised
+        by first name. Themed by chosen flavour. Swap the controls and watch it update live.
+      </p>
+
+      <div class="email-showcase">
+        <!-- Left: description + controls -->
+        <div class="showcase-copy">
+          <h3>Pixel-identical<br/>across every inbox<span class="tint">.</span></h3>
+          <p>
+            Gmail, Outlook, Apple Mail, Yahoo — same rendering, same experience. No scripts, no
+            SVG tricks, no broken video. Just a clean, fast, on-brand email.
+          </p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Auto-personalised first name in subject + hero</li>
+            <li><span class="check">✓</span> 8 flavour variants with matching colour palette</li>
+            <li><span class="check">✓</span> Click-through video card → opens hosted play page</li>
+            <li><span class="check">✓</span> Referral link generated per customer</li>
+            <li><span class="check">✓</span> ~10 KB email size → lands in inbox instantly</li>
+            <li><span class="check">✓</span> Passes Gmail's 102 KB truncation threshold easily</li>
+          </ul>
+
+          <div class="controls">
+            <div class="control-row">
+              <label for="preview-name">Name</label>
+              <input type="text" id="preview-name" value="Minou" placeholder="Type any name — preview updates as you type" autocomplete="off" spellcheck="false" />
+            </div>
+            <div class="control-row">
+              <label for="preview-flavor">Flavour</label>
+              <select id="preview-flavor">
+                <option value="berry">Purple Punch (Berry-Licious)</option>
+                <option value="peach">Peach Flame</option>
+                <option value="wintergreen">Wintergreen Malla</option>
+                <option value="melon" selected>Melon Blaze</option>
+                <option value="mango">Mango Rush</option>
+                <option value="mint">Jalapeño Glow</option>
+                <option value="cafe">Smooth Cappuccino</option>
+                <option value="blue">Mint Freeze</option>
+              </select>
+            </div>
+            <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin:6px 0 0; opacity:0.7;">
+              ↳ Try typing a different name or picking another flavour — the inbox preview on the right updates in real time.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: live email preview -->
+        <div>
+          <div class="email-frame">
+            <div class="gmail-bar">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="url" id="preview-url">/emails/mocks/gmail-welcome-melon.html?name=Minou</div>
+            </div>
+            <iframe id="email-preview" src="/emails/mocks/gmail-welcome-melon.html?name=Minou" title="Live email preview"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SECTION 2: THE FLOW ═══════════════ -->
+    <section class="section fade-on-scroll">
+      <div class="section-kicker"><span class="num">2</span> How the pipeline works <span class="line"></span></div>
+      <h2 class="section-title">Shopify fires it,<br/>we catch it, <span class="tint">they receive it.</span></h2>
+      <p class="section-intro">
+        Five steps. Fully automatic. No human in the loop. No batch jobs. No queues.
+        The moment Shopify registers the signup, the email is on its way.
+      </p>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="step-num">STEP 01</div>
+          <div class="step-icon">🛒</div>
+          <h4>Customer signs up</h4>
+          <p>On your Shopify store — form, checkout opt-in, or dedicated landing page. Tagged "circle-club" + favourite flavour.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="step-num">STEP 02</div>
+          <div class="step-icon">⚡</div>
+          <h4>Webhook fires</h4>
+          <p>Shopify's <code>customers/create</code> webhook instantly POSTs the customer data (HMAC-signed) to our endpoint.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="step-num">STEP 03</div>
+          <div class="step-icon">🔐</div>
+          <h4>Verify &amp; route</h4>
+          <p>HMAC signature check rejects forgeries. Customer tags decide which flavour template ships.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="step-num">STEP 04</div>
+          <div class="step-icon">✉️</div>
+          <h4>Render &amp; send</h4>
+          <p>Merge-tag substitution. SMTP dispatch via Gmail / SES. No API fees. No rate limits at our scale.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-step">
+          <div class="step-num">STEP 05</div>
+          <div class="step-icon">📬</div>
+          <h4>In their inbox</h4>
+          <p>End-to-end under 2 seconds. Customer sees their name, their flavour, their video — all pre-built on their behalf.</p>
+        </div>
+      </div>
+
+      <!-- Live demo trigger -->
+      <div class="demo-card">
+        <h3>See your version right now<span style="color:var(--hot);">.</span></h3>
+        <p class="desc">Type in your email, pick a flavour — we'll open a personalised preview showing exactly what would arrive in your inbox the moment you join the Circle.</p>
+        <form id="demo-form" class="demo-form" onsubmit="return fireDemo(event)">
+          <input type="email" id="demo-email" placeholder="recipient@example.com" required />
+          <select id="demo-flavor">
+            <option value="melon">Melon Blaze</option>
+            <option value="berry">Purple Punch</option>
+            <option value="peach">Peach Flame</option>
+            <option value="wintergreen">Wintergreen Malla</option>
+            <option value="mango">Mango Rush</option>
+            <option value="mint">Jalapeño Glow</option>
+            <option value="cafe">Smooth Cappuccino</option>
+            <option value="blue">Mint Freeze</option>
+          </select>
+          <button id="demo-submit" type="submit">Show me →</button>
+        </form>
+        <div class="demo-status" id="demo-status"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer>
+      <p>
+        <span style="color:var(--text); font-family:'Anton',sans-serif; font-size:18px; letter-spacing:0.05em;">N<span style="color:var(--hot);">1</span>CE Circle</span>
+        &nbsp;·&nbsp; Automated welcome system for Shopify
+      </p>
+      <p style="margin-top:8px; font-size:11px; color:rgba(250,247,242,0.35);">
+        Questions? Get in touch to schedule a walkthrough.
+      </p>
+    </footer>
+
+  </div>
+
+<script>
+(function() {
+  // ─── Live email preview sync ──────────────────────────
+  const nameEl = document.getElementById('preview-name');
+  const flavorEl = document.getElementById('preview-flavor');
+  const iframeEl = document.getElementById('email-preview');
+  const frameEl = iframeEl.closest('.email-frame');
+  const urlEl = document.getElementById('preview-url');
+
+  function refreshPreview() {
+    const n = encodeURIComponent(nameEl.value.trim() || 'Friend');
+    const f = flavorEl.value;
+    const url = `/emails/mocks/gmail-welcome-${f}.html?name=${n}`;
+    if (urlEl) urlEl.textContent = url;
+    if (frameEl) frameEl.classList.add('loading');
+    iframeEl.src = url;
+  }
+
+  // Clear the loading shimmer once the new iframe finishes loading
+  iframeEl.addEventListener('load', () => {
+    if (frameEl) frameEl.classList.remove('loading');
+  });
+
+  // Snappier debounce — 150ms feels live but doesn't thrash the iframe
+  let nameTimer;
+  nameEl.addEventListener('input', () => {
+    clearTimeout(nameTimer);
+    nameTimer = setTimeout(refreshPreview, 150);
+  });
+  // Also fire on blur (user tabs out) so it updates immediately
+  nameEl.addEventListener('change', refreshPreview);
+  // Press Enter to commit immediately
+  nameEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      clearTimeout(nameTimer);
+      refreshPreview();
+      nameEl.blur();
+    }
+  });
+  // Select-all on focus so the user can just start typing
+  nameEl.addEventListener('focus', () => nameEl.select());
+
+  flavorEl.addEventListener('change', refreshPreview);
+
+  // ─── Fade-on-scroll observer ──────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+
+  // ─── Stat counters animate on scroll ──────────────────
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.count, 10);
+      if (isNaN(target)) return;
+      if (el.dataset.done) return;
+      el.dataset.done = '1';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        el.textContent = Math.floor(target * eased);
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // ─── Live demo submit ─────────────────────────────────
+  // If the webhook endpoint isn't available (e.g. on static-only Netlify),
+  // we fall back to navigating the user to a personalised preview so they
+  // still get an immediate "see what my version would look like" payoff.
+  window.fireDemo = async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('demo-submit');
+    const status = document.getElementById('demo-status');
+    const email = document.getElementById('demo-email').value.trim();
+    const flavor = document.getElementById('demo-flavor').value;
+    if (!email) return false;
+
+    const firstName = email.split('@')[0].replace(/[^a-zA-Z]/g, '') || 'Friend';
+    const capName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+
+    btn.disabled = true;
+    status.className = 'demo-status loading';
+    status.textContent = '→ Processing signup, rendering template, preparing your preview...';
+
+    try {
+      const resp = await fetch('/webhook/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, firstName: capName, flavor }),
+        // Short timeout so we fail fast on static hosting
+        signal: AbortSignal.timeout ? AbortSignal.timeout(3000) : undefined
+      });
+      if (!resp.ok) throw new Error('Endpoint returned ' + resp.status);
+      const data = await resp.json();
+      if (data.ok) {
+        status.className = 'demo-status success';
+        status.textContent = `✓ Email delivered to ${email} · flavour: ${data.sent.flavor}`;
+      } else {
+        throw new Error(data.error || 'unknown');
+      }
+    } catch (err) {
+      // Static-deploy fallback — show the personalised preview in a new tab
+      // so the demo still works end-to-end even without a backend.
+      const previewUrl = `/emails/mocks/gmail-welcome-${flavor}.html?name=${encodeURIComponent(capName)}`;
+      status.className = 'demo-status success';
+      status.innerHTML = `✓ Opening <span style="color:var(--yellow);">${capName}'s</span> personalised preview — this is exactly what would arrive in the inbox.`;
+      setTimeout(() => { window.open(previewUrl, '_blank', 'noopener'); }, 400);
+    } finally {
+      setTimeout(() => { btn.disabled = false; }, 400);
+    }
+    return false;
+  };
+})();
+</script>
+
+</body>
+</html>

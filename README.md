@@ -3,10 +3,10 @@
 A complete email referral and lottery system for N'ICE nicotine pouches Circle membership.
 
 **Features:**
-- ✅ Circle signup with automatic welcome emails
-- ✅ Referral links that track who brought friends in
-- ✅ Automatic unlock when members refer 2+ friends
-- ✅ Random lottery to select 2 UFC fighter meet & greet winners
+- ✅ Circle signup with automatic welcome email (with personalized video placeholder)
+- ✅ Referral links that track who brought friends in (everyone is in the draw — no threshold)
+- ✅ Random lottery to select N UFC fighter meet & greet winners (configurable, default 2)
+- ✅ Winner email with personalized "you won" video placeholder
 - ✅ Clean REST API for all operations
 - ✅ Mock integration ready for Shopify/Klaviyo hookup
 
@@ -238,10 +238,8 @@ pool_start_date (DATE) - Start of eligibility window
 pool_end_date (DATE) - End of eligibility window
 total_pool_size (INT) - How many signups in pool
 random_seed (VARCHAR) - Seed for reproducibility
-winner1_email (VARCHAR) - First winner's email
-winner2_email (VARCHAR) - Second winner's email
-winner1_confirmed (BOOLEAN) - RSVP status
-winner2_confirmed (BOOLEAN) - RSVP status
+winner_count (INT) - How many winners were drawn
+winners (JSONB) - Array of { email, first_name, member_id }, length = winner_count
 created_at (TIMESTAMP) - Log creation time
 ```
 

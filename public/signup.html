@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Join N1CE Circle. Two members win a meet & greet with Justin Gaethje at UFC Freedom 250." />
+  <title>Join the N1CE Circle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #27BC76;
+      --pink: #F085C6;
+      --orange: #FF5600;
+      --red: #E2003F;
+      --dark: #002419;
+      --black: #0A0A0A;
+      --cream: #FAF7F2;
+      --white: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .nav-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-tag { opacity: 0.7; }
+
+    .hero {
+      background: var(--green);
+      padding: 80px 32px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      font-size: 13px;
+      color: var(--black);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: inline-block;
+      background: var(--white);
+      padding: 8px 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(56px, 9vw, 128px);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 .accent { color: var(--white); }
+
+    .hero-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      max-width: 540px;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .tagline-bar {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 32px;
+      text-align: center;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(20px, 3vw, 32px);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .tagline-bar .dot { color: var(--orange); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .pitch {
+      background: var(--cream);
+      padding: 64px 48px;
+    }
+
+    .section-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 14px;
+      color: var(--orange);
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+    }
+
+    .pitch h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      color: var(--black);
+    }
+
+    .pitch p {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 16px;
+      max-width: 460px;
+    }
+
+    .perks {
+      list-style: none;
+      margin-top: 32px;
+      border-top: 2px solid var(--black);
+    }
+
+    .perks li {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .perks li::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: var(--orange);
+    }
+
+    .perks li:nth-child(2)::before { background: var(--green); }
+    .perks li:nth-child(3)::before { background: var(--red); }
+
+    .form-card {
+      background: var(--black);
+      color: var(--white);
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-card .label {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.2em;
+      font-size: 12px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .form-card h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    .field label {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .field input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--white);
+      padding: 12px 0;
+      color: var(--white);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus { border-bottom-color: var(--orange); }
+    .field input::placeholder { color: rgba(255,255,255,0.35); }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      padding: 22px;
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.15s;
+    }
+
+    .submit-btn:hover { background: var(--red); }
+    .submit-btn:disabled { background: #555; cursor: not-allowed; }
+
+    .legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .status {
+      margin-top: 20px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      display: none;
+    }
+
+    .status.success { display: block; background: var(--green); color: var(--black); }
+    .status.error { display: block; background: var(--red); color: var(--white); }
+
+    .prize {
+      background: var(--pink);
+      padding: 80px 32px;
+      text-align: center;
+    }
+
+    .prize-inner { max-width: 900px; margin: 0 auto; }
+
+    .prize .section-num { color: var(--black); }
+
+    .prize h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .prize p {
+      max-width: 600px;
+      margin: 0 auto 32px;
+      font-size: 15px;
+    }
+
+    .stat-block {
+      background: var(--black);
+      color: var(--white);
+      display: inline-block;
+      padding: 24px 36px;
+      font-family: 'Anton', sans-serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .stat-block .stat-num {
+      font-size: 48px;
+      color: var(--orange);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-block .stat-label { font-size: 12px; }
+
+    .sweden {
+      background: var(--dark);
+      color: var(--white);
+      padding: 64px 32px;
+      text-align: center;
+    }
+
+    .sweden h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.05;
+    }
+
+    .sweden h3 .green-text { color: var(--green); }
+
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.6);
+      padding: 40px 32px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+
+    footer a { color: var(--white); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--orange); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav-logo">N1CE</span>
+    <span class="nav-tag">FAR FROM ORDINARY</span>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Members Only / Pre-Launch</span>
+      <h1>Join the<br/><span class="accent">Circle.</span></h1>
+      <p class="hero-sub">An exclusive pre-launch community for the discerning. Early access, fighter meet &amp; greets, and perks reserved for those who arrived first.</p>
+    </div>
+  </section>
+
+  <div class="tagline-bar">
+    Far <span class="dot">·</span> From <span class="dot">·</span> Ordinary
+  </div>
+
+  <section class="grid">
+    <div class="pitch">
+      <div class="section-num">/ 01 — WHAT YOU GET</div>
+      <h2>The Circle is built for a few. Not many.</h2>
+      <p>Every member is granted exclusive access to N1CE before public launch on June 14, 2026. Members shape what comes next — flavors, drops, fighter collabs.</p>
+      <ul class="perks">
+        <li>Early Access to N1CE Drops</li>
+        <li>UFC Freedom 250 Meet &amp; Greet Draw</li>
+        <li>Referral Rewards &amp; Loyalty Points</li>
+      </ul>
+    </div>
+
+    <div class="form-card">
+      <div class="label">/ Apply for Membership</div>
+      <h3>Claim your spot.</h3>
+      <form id="signupForm">
+        <div class="field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Your name" required minlength="2" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone <span style="opacity:0.5;">(optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 555 000 0000" />
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Join the Circle →</button>
+        <p class="legal">By joining, you agree to receive emails about N1CE products, events, and the meet &amp; greet draw. Unsubscribe anytime. Must be 21+.</p>
+        <div class="status" id="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="prize">
+    <div class="prize-inner">
+      <div class="section-num">/ 02 — THE DRAW</div>
+      <h2>Meet Gaethje.</h2>
+      <p>Two Circle members will be randomly selected to meet UFC champion Justin Gaethje at UFC Freedom 250. No purchase. No catch. Just be in the Circle.</p>
+      <div class="stat-block">
+        <span class="stat-num">06.14.26</span>
+        <span class="stat-label">Draw Date</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sweden">
+    <h3>Premium Nicotine Pouches <span class="green-text">Made by Sweden.</span></h3>
+  </section>
+
+  <footer>
+    <div>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Contact</a>
+    </div>
+    <p style="margin-top: 18px;">© 2026 N1CE. All rights reserved. Must be 21+ to join.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const status = document.getElementById('status');
+    const btn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      status.className = 'status';
+      status.textContent = '';
+
+      const data = {
+        firstName: form.firstName.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim() || undefined
+      };
+
+      try {
+        const res = await fetch('/api/circle/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          status.className = 'status success';
+          status.innerHTML = `Welcome, ${data.firstName}. Member ID: <strong>${result.memberId}</strong> · Your referral link: <strong>${result.referralLink}</strong>`;
+          form.reset();
+          btn.textContent = 'You\u2019re In ✓';
+        } else {
+          status.className = 'status error';
+          status.textContent = result.message || 'Signup failed. Try again.';
+          btn.disabled = false;
+          btn.textContent = 'Join the Circle →';
+        }
+      } catch (err) {
+        status.className = 'status error';
+        status.textContent = 'Network error. Try again.';
+        btn.disabled = false;
+        btn.textContent = 'Join the Circle →';
+      }
+    });
+  </script>
+</body>
+</html>

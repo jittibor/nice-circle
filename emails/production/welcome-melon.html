@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Welcome to N1CE Circle</title>
+  <!--[if mso]>
+  <style>body,table,td{font-family:Arial,sans-serif !important;}</style>
+  <![endif]-->
+</head>
+<body style="margin:0; padding:0; background-color:#FAF7F2; font-family:Arial,Helvetica,sans-serif;">
+
+  <!-- Pre-header (hidden preview text shown in inbox list) -->
+  <div style="display:none; font-size:1px; color:#FAF7F2; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+    {% if person|lookup:"first_name" %}{{ person|lookup:"first_name" }}{% else %}Friend{% endif %}, you're in. A personal message from Justin Gaethje + your member link inside.
+  </div>
+
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#FAF7F2;">
+    <tr>
+      <td align="center" style="padding:0;">
+
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="width:600px; max-width:600px; background-color:#FAF7F2;">
+
+          <!-- ════════════════ HERO ════════════════ -->
+          <tr>
+            <td valign="middle" align="left"
+                bgcolor="#E05030"
+                style="background:#E05030; background:linear-gradient(160deg, #E05030 0%, #A82820 35%, #5A0A0A 70%, #200505 100%); padding:60px 48px 72px;">
+
+              <img src="http://localhost:3000/images/n1ce-logo-white.png" width="140" alt="N1CE" style="display:block; width:140px; max-width:140px; margin:0 0 32px 0; border:0;" />
+
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td valign="middle" width="60%" style="width:60%;">
+                    <p style="margin:0 0 14px; font-family:Arial,sans-serif; font-size:11px; letter-spacing:3.5px; text-transform:uppercase; color:#FFE040; font-weight:700;">Circle &nbsp;/&nbsp; Melon Blaze</p>
+                    <h1 style="margin:0 0 20px; font-family:'Arial Black',sans-serif; font-size:54px; line-height:0.95; letter-spacing:-1px; color:#FFFFFF; text-transform:uppercase;">
+                      Welcome,<br/>
+                      <span style="color:#FF9070;">{% if person|lookup:"first_name" %}{{ person|lookup:"first_name" }}{% else %}Friend{% endif %}<span style="color:#FFB020;">.</span></span>
+                    </h1>
+                    <p style="margin:0; font-family:'Courier New',monospace; font-size:14px; color:#FAF7F2; line-height:1.7;">
+                      Thanks for joining the N1CE Circle.
+                    </p>
+                  </td>
+                  <td valign="middle" align="right" width="40%" style="width:40%;">
+                    <img src="http://localhost:3000/images/pouches/melon.png" width="200" alt="Melon Blaze" style="display:block; width:200px; max-width:200px; border:0; margin:0 0 0 auto;" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- themed divider -->
+          <tr><td bgcolor="#FFB020" style="height:6px; line-height:6px; font-size:0; background:#FFB020;">&nbsp;</td></tr>
+
+          <!-- ════════════════ VIDEO ════════════════ -->
+          <tr>
+            <td bgcolor="#FAF7F2" style="background-color:#FAF7F2; padding:44px 48px 36px;">
+              <p style="margin:0 0 14px; font-family:Arial,sans-serif; font-size:11px; letter-spacing:3px; color:#FFB020; text-transform:uppercase; font-weight:700;">A message for you</p>
+              <h2 style="margin:0 0 28px; font-family:'Arial Black',sans-serif; font-size:46px; line-height:1; color:#0A0A0A; text-transform:uppercase; letter-spacing:-0.5px;">From <span style="color:#E05030;">Justin.</span></h2>
+
+              <!-- Click-through video card: static thumbnail with play overlay.
+                   Links to a landing page that hosts the real video (or direct to video). -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td bgcolor="#FFB020" style="padding:3px; background-color:#FFB020;">
+                    <a href="http://localhost:3000/video-play.html" target="_blank" style="text-decoration:none; color:inherit; display:block;">
+                      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#0A0A0A;">
+                        <tr>
+                          <td align="center" valign="middle" height="280" background="http://localhost:3000/images/video-poster.jpg" bgcolor="#0A0A0A" style="height:280px; background-color:#0A0A0A; background-image:url('http://localhost:3000/images/video-poster.jpg'); background-size:cover; background-position:center;">
+                            <!--[if gte mso 9]>
+                            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:504px; height:280px;">
+                              <v:fill type="frame" src="http://localhost:3000/images/video-poster.jpg" color="#0A0A0A" />
+                              <v:textbox inset="0,0,0,0">
+                            <![endif]-->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                              <tr>
+                                <td align="center" valign="middle" width="90" height="90" bgcolor="#FFB020" style="width:90px; height:90px; background-color:#FFB020; border-radius:50%; border:4px solid #FFFFFF;">
+                                  <span style="font-family:Arial,sans-serif; font-size:36px; color:#FFFFFF; line-height:1; padding-left:8px;">&#9654;</span>
+                                </td>
+                              </tr>
+                            </table>
+                            <!--[if gte mso 9]>
+                              </v:textbox>
+                            </v:rect>
+                            <![endif]-->
+                          </td>
+                        </tr>
+                        <tr>
+                          <td bgcolor="#0A0A0A" style="background-color:#0A0A0A; padding:14px 18px;" align="left">
+                            <span style="font-family:Arial,sans-serif; font-size:11px; letter-spacing:2.5px; color:#FFE040; text-transform:uppercase;">&#9654; Personalized for {% if person|lookup:"first_name" %}{{ person|lookup:"first_name" }}{% else %}Friend{% endif %} &nbsp;/&nbsp; Tap to play</span>
+                          </td>
+                        </tr>
+                      </table>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ════════════════ REFERRAL ════════════════ -->
+          <tr>
+            <td valign="middle" bgcolor="#200505" style="background:#200505; background:linear-gradient(160deg, #200505 0%, #E05030 55%, #A82820 100%); padding:48px 48px 56px;">
+
+              <p style="margin:0 0 14px; font-family:Arial,sans-serif; font-size:11px; letter-spacing:3px; color:#FFE040; text-transform:uppercase; font-weight:700;">Your Member Link</p>
+              <h2 style="margin:0 0 18px; font-family:'Arial Black',sans-serif; font-size:52px; line-height:0.95; color:#FFFFFF; text-transform:uppercase; letter-spacing:-1px;">Bring a<br/><span style="color:#FF9070;">friend.</span></h2>
+              <p style="margin:0 0 28px; font-family:'Courier New',monospace; font-size:14px; color:#FAF7F2; line-height:1.65; max-width:440px;">Share your link. Anyone who joins through it goes into the draw too.</p>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td bgcolor="#0A0A0A" style="background-color:#0A0A0A; border-left:4px solid #FFB020; padding:22px 24px;" align="left">
+                    <p style="margin:0 0 10px; font-family:Arial,sans-serif; font-size:10px; letter-spacing:3px; color:#FFE040; text-transform:uppercase; font-weight:700;">Your link</p>
+                    <div style="font-family:'Courier New',monospace; font-size:15px; color:#FFFFFF; word-break:break-all; font-weight:700;">n1ce.com/r/{{ event.referral_code|default:"YOURCODE" }}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:24px;">
+                <tr>
+                  <td bgcolor="#FFB020" align="center" style="background-color:#FFB020;">
+                    <a href="https://n1ce.com/r/{{ event.referral_code|default:"YOURCODE" }}" style="display:inline-block; padding:16px 36px; font-family:'Arial Black',sans-serif; font-size:17px; letter-spacing:1.5px; color:#FFFFFF; text-decoration:none; text-transform:uppercase; font-weight:700;">Share My Link &rarr;</a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- ════════════════ FOOTER ════════════════ -->
+          <tr>
+            <td bgcolor="#0A0A0A" style="background-color:#0A0A0A; padding:36px 32px;" align="center">
+              <img src="http://localhost:3000/images/n1ce-logo-white.png" width="80" alt="N1CE" style="display:block; width:80px; max-width:80px; margin:0 auto 18px auto; border:0;" />
+              <p style="margin:0 0 14px; font-family:Arial,sans-serif; font-size:11px; letter-spacing:3px; color:#FF9070; text-transform:uppercase; font-weight:700;">
+                <a href="#" style="color:#FF9070; text-decoration:none;">Instagram</a> &middot;
+                <a href="#" style="color:#FFB020; text-decoration:none;">TikTok</a> &middot;
+                <a href="#" style="color:#FFE040; text-decoration:none;">Contact</a>
+              </p>
+              <p style="margin:0 0 6px; font-family:'Courier New',monospace; font-size:11px; color:#FAF7F2; opacity:0.55;">N1CE / Stockholm, Sweden</p>
+              <p style="margin:0; font-family:'Courier New',monospace; font-size:10px; color:#FAF7F2; opacity:0.45;">© 2026 N1CE &middot; <a href="{% unsubscribe %}" style="color:#FAF7F2; text-decoration:underline;">Unsubscribe</a> &middot; Must be 21+</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

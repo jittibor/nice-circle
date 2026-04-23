@@ -1,0 +1,9 @@
+# Keep source/infrastructure files out of the Netlify deploy
+node_modules/
+scripts/
+server.js
+package-lock.json
+.env
+.env.*
+schema.sql
+*.md

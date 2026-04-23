@@ -1,4 +1,4 @@
--- N'ICE Circle Referral System Database Schema
+-- N1CE Circle Referral System Database Schema
 
 -- CircleSignups Table
 CREATE TABLE IF NOT EXISTS circle_signups (
@@ -27,6 +27,8 @@ CREATE INDEX idx_circle_signups_is_winner ON circle_signups(is_winner);
 CREATE INDEX idx_circle_signups_signup_date ON circle_signups(signup_date);
 
 -- WinnerDrawLog Table
+-- Flexible winner count: stores N winners as JSONB array.
+-- Each element: { "email": "...", "first_name": "...", "member_id": "..." }
 CREATE TABLE IF NOT EXISTS winner_draw_log (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   draw_id VARCHAR(50) UNIQUE NOT NULL,
@@ -35,19 +37,13 @@ CREATE TABLE IF NOT EXISTS winner_draw_log (
   pool_end_date DATE NOT NULL,
   total_pool_size INTEGER NOT NULL,
   random_seed VARCHAR(255),
-  winner1_email VARCHAR(255) NOT NULL,
-  winner1_first_name VARCHAR(255),
-  winner1_member_id VARCHAR(50),
-  winner2_email VARCHAR(255) NOT NULL,
-  winner2_first_name VARCHAR(255),
-  winner2_member_id VARCHAR(50),
-  winner1_confirmed BOOLEAN,
-  winner2_confirmed BOOLEAN,
+  winner_count INTEGER NOT NULL,
+  winners JSONB NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 -- Indexes for WinnerDrawLog
 CREATE INDEX idx_winner_draw_log_draw_date ON winner_draw_log(draw_date);
 CREATE INDEX idx_winner_draw_log_draw_id ON winner_draw_log(draw_id);
-CREATE INDEX idx_winner_draw_log_winner1_email ON winner_draw_log(winner1_email);
-CREATE INDEX idx_winner_draw_log_winner2_email ON winner_draw_log(winner2_email);
+-- GIN index lets us search inside the winners JSONB array (e.g. find draws containing an email)
+CREATE INDEX idx_winner_draw_log_winners ON winner_draw_log USING GIN (winners);

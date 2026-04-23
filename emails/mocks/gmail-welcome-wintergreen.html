@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gmail · N1CE Circle · Wintergreen Malla</title>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;height:100%;background:#f6f8fc;font-family:'Google Sans','Roboto',Arial,sans-serif;color:#202124;}
+    .gnav{display:flex;align-items:center;height:64px;padding:0 16px;background:#f6f8fc;border-bottom:1px solid #e8eaed;}
+    .gnav-logo-text{font-size:22px;color:#5f6368;margin-right:24px;margin-left:12px;}
+    .gnav-search{flex:1;max-width:720px;background:#eaf1fb;border-radius:8px;height:48px;padding:0 16px;display:flex;align-items:center;color:#5f6368;}
+    .gnav-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#E2003F,#FF5600);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-left:auto;margin-right:16px;}
+    .shell{display:flex;height:calc(100vh - 64px);}
+    .sidebar{width:256px;padding:16px;}
+    .folder{padding:10px 18px;border-radius:0 16px 16px 0;font-size:14px;color:#202124;cursor:pointer;}
+    .folder.active{background:#d3e3fd;font-weight:700;}
+    .mailview{flex:1;background:#fff;border-radius:16px 0 0 0;margin:0 8px 8px 0;overflow-y:auto;}
+    .mtoolbar{padding:12px 16px;border-bottom:1px solid #e8eaed;color:#5f6368;font-size:13px;display:flex;align-items:center;gap:12px;}
+    .name-picker{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:#5f6368;}
+    .name-picker label{font-weight:500;letter-spacing:0.05em;text-transform:uppercase;}
+    .name-picker select{appearance:none;-webkit-appearance:none;background:#f1f3f4;border:1px solid #dadce0;border-radius:18px;padding:6px 30px 6px 14px;font-size:13px;color:#202124;cursor:pointer;outline:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'><path fill='%235f6368' d='M3 5l4 4 4-4z'/></svg>");background-repeat:no-repeat;background-position:right 10px center;}
+    .name-picker select:hover{background-color:#e8eaed;}
+    .subject-row{padding:24px 48px 0;font-size:22px;}
+    .sender-row{padding:16px 48px 20px;border-bottom:1px solid #f1f3f4;color:#5f6368;font-size:12px;}
+    .sender-row strong{color:#202124;font-size:14px;}
+    .email-body{padding:0;}
+    .email-body iframe{width:100%;max-width:620px;height:2400px;border:0;display:block;margin:0 auto;}
+  </style>
+</head>
+<body>
+  <div class="gnav">
+    <div class="gnav-logo-text">Gmail</div>
+    <div class="gnav-search">&#128269; Search mail</div>
+    <div class="gnav-avatar">T</div>
+  </div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="folder active">&#128229; Inbox</div>
+      <div class="folder">&#9733; Starred</div>
+      <div class="folder">&#10148; Sent</div>
+      <div class="folder">&#128196; Drafts</div>
+    </aside>
+    <main class="mailview">
+      <div class="mtoolbar">
+        <span id="mail-pager">&larr; &nbsp; 1 of 2,841</span>
+        <div class="name-picker">
+          <label for="name-select">Send as</label>
+          <select id="name-select" onchange="swapName(this.value)">
+            <option value="">{{firstName}} (default)</option>
+            <option value="Minou">Minou</option>
+            <option value="Stefan">Stefan</option>
+            <option value="Durim">Durim</option>
+            <option value="Micheal">Micheal</option>
+          </select>
+        </div>
+      </div>
+      <div class="subject-row" id="subject">Welcome to N1CE Circle. <span style="font-size:11px;background:#e8f0fe;color:#1967d2;padding:2px 8px;border-radius:4px;margin-left:8px;">Inbox</span></div>
+      <div class="sender-row"><strong>N1CE</strong> &lt;hello@n1ce.com&gt; &middot; to <span id="recipient">me</span> &middot; 2:41 PM</div>
+      <div class="email-body"><iframe id="email-iframe" src="/emails/variants/welcome-wintergreen.html" title="Welcome email"></iframe></div>
+    </main>
+  </div>
+  <script>
+    var EMAIL = '/emails/variants/welcome-wintergreen.html';
+    // Initial name from URL
+    var params = new URLSearchParams(location.search);
+    var name = (params.get('name') || '').trim();
+    if (name) {
+      document.getElementById('name-select').value = name;
+      document.getElementById('subject').firstChild.nodeValue = 'Welcome to N1CE Circle, ' + name + '. ';
+      document.getElementById('recipient').textContent = name;
+      document.getElementById('email-iframe').src = EMAIL + '?name=' + encodeURIComponent(name);
+    }
+    function swapName(val) {
+      var url = val ? (location.pathname + '?name=' + encodeURIComponent(val)) : location.pathname;
+      location.href = url;
+    }
+  </script>
+</body>
+</html>
